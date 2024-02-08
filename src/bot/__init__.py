@@ -46,21 +46,15 @@ class RegistrationState(enum.Enum):
     KNOWLEDGE_LEVEL = 'knowledge level'
 
     
-def get_state(bot, message):
+def get_state(message):
     return bot.get_state(message.from_user.id, message.chat.id)
 
 
 def remove_inline_keyboard(call):
     message_id = call.message.message_id
     chat_id = call.message.chat.id
-    bot.edit_message_reply_markup(
-        chat_id=chat_id, message_id=message_id, reply_markup=None)
+    bot.edit_message_reply_markup(chat_id=chat_id, message_id=message_id, reply_markup=None)
 
-
-markup = types.ReplyKeyboardMarkup(
-    resize_keyboard=True, 
-    one_time_keyboard=True
-    )
 
 
 bot = TeleBot(TELEGRAM_TOKEN)
@@ -71,6 +65,14 @@ def handle_start_command(message):
     pass
 
 
+def handle_group_results(message):
+    pass
+
+
+def handle_courses_command(message):
+    pass
+
+
 def handle_register_course(message):
     pass
 
@@ -78,13 +80,9 @@ def handle_register_course(message):
 def handle_help(message):
     pass
 
+
 def handle_cancel(message):
     pass
-
-
-def handle_group_results(message):
-    pass
-
 
 
 @csrf_exempt
@@ -112,7 +110,8 @@ List of commands:
 /register - mavjud kurslarga yozilish
 /help - barcha buyruqlarni ko'rish
 /cancel - buyruqni bekor qilish
-"""
+""",
+    reply_markup=types.ReplyKeyboardRemove()
     )
 
 
@@ -129,14 +128,18 @@ def handle_cancel(message):
 @bot.message_handler(commands=['start'])
 def handle_start_command(message):
     bot.reply_to(
-        message, f"""CALLANGA xush kelibsiz!"""
+        message, f"""CALLAN Education Botiga xush kelibsiz!"""
     )    
 
 
 @bot.message_handler(commands=['results'])
 def handle_group_results(message):
     groups = Group.objects.all()
-    course_markup = CustomKeyboard([group.name for group in groups], one_time_keyboard=True)
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    course_markup = CustomKeyboard(
+        [group.name for group in groups], 
+        one_time_keyboard=True
+        )
     try:
         bot.set_state(
             message.from_user.id,
@@ -153,8 +156,9 @@ def handle_group_results(message):
 
 @bot.message_handler(state=GetCourseResultsState.COURSE_NAME.value)
 def handle_group_results(message):
+    bot.delete_state(message.from_user.id, message.chat.id)
     group = get_object_or_404(Group, name=message.text)
-    results = ExamGrade.objects.filter(group=group).last() # we retrieve last test results
+    results = ExamGrade.objects.filter(group=group).last() # retrieve last test results
     try:
         bot.send_photo(
             message.chat.id,
@@ -165,7 +169,7 @@ def handle_group_results(message):
 
 
 @bot.message_handler(commands=['courses'])
-def handle_start_command(message):
+def handle_courses_command(message):
     bot.delete_state(message.from_user.id, message.chat.id)
     courses = Course.objects.all()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -184,12 +188,25 @@ def handle_start_command(message):
         print(f"Error at: {e}")
 
 
+@bot.message_handler(state=GetGroupInfoState.GROUP_NAME.value)
+def handle_group_info_state(message):
+    bot.delete_state(message.from_user.id, message.chat.id)
+    try:
+        course = get_object_or_404(Course, name=message.text)
+        bot.send_message(
+            message.chat.id,
+            course.info,
+        )
+    except Exception as e:
+        print(f"Error at: {e}")
+
+
 @bot.message_handler(commands=['register'])
 def handle_register_course(message):
     bot.delete_state(message.from_user.id, message.chat.id)
     courses = Course.objects.all()
-    courses_buttons = CustomKeyboard([course.name for course in courses])
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    courses_buttons = CustomKeyboard([course.name for course in courses])
     try:
         bot.reply_to(
             message,
@@ -199,20 +216,6 @@ def handle_register_course(message):
         bot.set_state(
             message.from_user.id,
             state=RegistrationState.COURSE.value
-        )
-    except Exception as e:
-        print(f"Error at: {e}")
-
-
-# Get Group Info command state
-@bot.message_handler(state=GetGroupInfoState.GROUP_NAME.value)
-def handle_group_info_state(message):
-    bot.delete_state(message.from_user.id, message.chat.id)
-    try:
-        course = get_object_or_404(Course, name=message.text)
-        bot.send_message(
-            message.chat.id,
-            course.info,
         )
     except Exception as e:
         print(f"Error at: {e}")
