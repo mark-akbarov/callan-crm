@@ -98,11 +98,11 @@ def webhook(request):
 def handle_help(message):
     bot.reply_to(
         message,
-        """
-This bot can help get info about CALLAN branches 
-and students can see their course grades/results.
+"""
+Ushbu bot CALLAN filiallari haqida ma'lumot olishga yordam beradi
+va talabalar o'zlarining kurs baholarini/natijalarini ko'rishlari mumkin.
 
-List of commands:
+Buyruqlar ro'yxati:
 
 /start - botni ishga tushirish
 /results - test natijalarini ko'rish
