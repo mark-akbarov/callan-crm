@@ -69,7 +69,7 @@ def handle_group_results(message):
     pass
 
 
-def handle_courses_command(message):
+def handle_courses(message):
     pass
 
 
@@ -87,11 +87,13 @@ def handle_cancel(message):
 
 @csrf_exempt
 def webhook(request):
-    data = json.loads(request.body)
-    print(bot.get_state(data['message']['from']['id'], data['message']['chat']['id']))
-    update = types.Update.de_json(data)
-    bot.process_new_updates([update])
-    return HttpResponse()
+    try:
+        data = json.loads(request.body)
+        update = types.Update.de_json(data)
+        bot.process_new_updates([update])
+        return HttpResponse()
+    except Exception as errors:
+        print(f"Errors at : {errors}")
 
 
 @bot.message_handler(commands=['help'])
@@ -127,8 +129,18 @@ def handle_cancel(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start_command(message):
+    bot.send_location(
+        message.chat.id,
+        latitude=40.53436921352104,
+        longitude=70.94687947342611,
+        heading="Hello",
+    )
     bot.reply_to(
-        message, f"""CALLAN Education Botiga xush kelibsiz!"""
+        message, 
+f"""
+CALLAN Education Botiga xush kelibsiz!
+Botning barcha funksiyalarini ko'rish uchun /help tugmasini bosing.
+"""
     )    
 
 
@@ -145,8 +157,8 @@ def handle_group_results(message):
             message.from_user.id,
             GetCourseResultsState.COURSE_NAME.value
         )
-        bot.send_message(
-            message.chat.id,
+        bot.reply_to(
+            message,
             'Guruh nomini tanlang.',
             reply_markup=markup.add(*course_markup.create()),
         )
@@ -156,21 +168,20 @@ def handle_group_results(message):
 
 @bot.message_handler(state=GetCourseResultsState.COURSE_NAME.value)
 def handle_group_results(message):
-    bot.delete_state(message.from_user.id, message.chat.id)
     group = get_object_or_404(Group, name=message.text)
     results = ExamGrade.objects.filter(group=group).last() # retrieve last test results
     try:
         bot.send_photo(
             message.chat.id,
             results.grades_photo,
+            reply_to_message_id=message.id
         )
     except Exception as e:
         print(f"Error at: {e}")
 
 
 @bot.message_handler(commands=['courses'])
-def handle_courses_command(message):
-    bot.delete_state(message.from_user.id, message.chat.id)
+def handle_courses(message):
     courses = Course.objects.all()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     group_markup = CustomKeyboard([course.name for course in courses])
@@ -193,8 +204,8 @@ def handle_group_info_state(message):
     bot.delete_state(message.from_user.id, message.chat.id)
     try:
         course = get_object_or_404(Course, name=message.text)
-        bot.send_message(
-            message.chat.id,
+        bot.reply_to(
+            message,
             course.info,
         )
     except Exception as e:
@@ -203,7 +214,6 @@ def handle_group_info_state(message):
 
 @bot.message_handler(commands=['register'])
 def handle_register_course(message):
-    bot.delete_state(message.from_user.id, message.chat.id)
     courses = Course.objects.all()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     courses_buttons = CustomKeyboard([course.name for course in courses])
@@ -350,5 +360,3 @@ def handle_parent_phone_number(message):
     )
     except Exception as e:
         print(f"Error when creating object: {e}")
-
-    

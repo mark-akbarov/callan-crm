@@ -24,7 +24,8 @@ from bot import webhook
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/accounts/', include('account.urls')),
-    path('api/v1/bot/', webhook)
+    path('api/v1/courses/', include('course.urls')),
+    path('api/v1/bot/', webhook),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
