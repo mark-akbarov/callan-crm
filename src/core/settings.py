@@ -35,6 +35,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
 # str(os.getenv("ALLOWED_HOSTS")).split(" ")
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost:1337"]
+
 
 # Application definition
 
