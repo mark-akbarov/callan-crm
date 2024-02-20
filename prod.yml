@@ -2,8 +2,10 @@ version: '3.8'
 
 services:
   web:
-      build: ./src
-      command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 
+      build: 
+        context: ./src
+        dockerfile: Dockerfile.prod
+      command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 --env DJANGO_SETTINGS_MODULE=core.settings.prod
       volumes:
         - static_volume:/home/app/web/static
         - media_volume:/home/app/web/media

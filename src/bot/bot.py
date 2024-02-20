@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from telebot import TeleBot, types, custom_filters
 
-from core.settings.base import TELEGRAM_TOKEN
+from core.settings import TELEGRAM_TOKEN
 from course.models.course import Group, ExamGrade, Course
 from course.serializers.group import GroupSerializer, GroupNameSerializer
 from account.models.account import User, Enrollment

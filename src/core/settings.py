@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 
 # Load all environment variables
 # load_dotenv(dotenv_path='../.')
-load_dotenv()
+load_dotenv('../.env')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
