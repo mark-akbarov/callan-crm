@@ -40,3 +40,7 @@ local_settings.py
 
 # Testing
 pytest_cache/
+
+# Config giles
+certbot/
+**/certbot
