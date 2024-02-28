@@ -6,9 +6,9 @@ from core.utils.base_model import BaseModel
 
 
 class UserType(models.IntegerChoices):
-    ADMIN = 0
-    TEACHER = 1
-    STUDENT = 2
+    ADMIN = 0, 'Admin'
+    TEACHER = 1, 'Teacher'
+    STUDENT = 2, 'Student'
 
 
 class KnowledgeLevel(models.TextChoices):
@@ -22,13 +22,13 @@ class User(AbstractUser):
     username = models.CharField(max_length=255, default=uuid.uuid4, unique=True, null=True)
     type = models.CharField(choices=UserType.choices, max_length=15)
     phone_number = models.CharField(max_length=25, unique=True)    
-    email = models.EmailField(max_length=255, unique=True, null=True)
+    email = models.EmailField(max_length=255, unique=True, null=True, blank=True)
     first_name = models.CharField(max_length=255, null=True)
     last_name = models.CharField(max_length=255, null=True)
     # parent_name = models.CharField(max_length=255, null=True)
     # parent_phone_number = models.CharField(max_length=25, unique=True, null=True)
-    telegram_username = models.CharField(max_length=255, unique=True, null=True)
-    telegram_user_id = models.PositiveIntegerField(unique=True, null=True)
+    telegram_username = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    telegram_user_id = models.PositiveIntegerField(unique=True, null=True, blank=True)
     
     REQUIRED_FIELDS = ['phone_number']
     
