@@ -5,7 +5,7 @@ services:
       build: 
         context: ./src
         dockerfile: Dockerfile.local
-      command: python manage.py runserver 0.0.0.0:8000 --settings=core.settings.base
+      command: python manage.py runserver 0.0.0.0:8000
       volumes:
         - ./src/:/usr/src/app/
       ports:
@@ -17,7 +17,7 @@ services:
   db:
     image: postgres:12-bookworm
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -25,6 +25,6 @@ services:
   
 
 volumes:
-  postgres_data:
+  data:
   static_volume:
   media_volume:

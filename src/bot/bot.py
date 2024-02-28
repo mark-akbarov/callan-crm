@@ -233,7 +233,7 @@ def handle_register_category(message):
         print(f"Error at: {e}")
 
 
-@bot.message_handler(state=RegistrationState.COURSE.value)
+@bot.message_handler(state=RegistrationState.CATEGORY.value)
 def handle_register_course(message):
     category_name = message.text
     courses = Course.objects.filter(category__name=category_name)
