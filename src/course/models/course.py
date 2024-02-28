@@ -30,6 +30,7 @@ class Course(BaseModel):
         null=True
         )
     info = models.TextField()
+    category = models.ForeignKey('course.Category', on_delete=models.CASCADE, related_name='courses')
     
     def __str__(self) -> str:
         return self.name

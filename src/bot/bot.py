@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from telebot import TeleBot, types, custom_filters
 
 from core.settings import TELEGRAM_TOKEN
-from course.models.course import Group, ExamGrade, Course
+from course.models import Group, ExamGrade, Course, Category
 from course.serializers.group import GroupSerializer, GroupNameSerializer
 from account.models.account import User, Enrollment
 
@@ -37,13 +37,15 @@ class KnowledgeLevel(enum.Enum):
     
 
 class RegistrationState(enum.Enum):
+    CATEGORY = 'category'
     COURSE = 'course'
+    KNOWLEDGE_LEVEL = 'knowledge level'
     FIRST_NAME = 'first name'
     LAST_NAME = 'last name'
     PHONE_NUMBER = 'phone number'
-    PARENT_NAME = 'parent name'
-    PARENT_PHONE_NUMBER = 'phone phone number'
-    KNOWLEDGE_LEVEL = 'knowledge level'
+    FINISH = 'finish registration'
+    # PARENT_NAME = 'parent name'
+    # PARENT_PHONE_NUMBER = 'phone phone number'
 
     
 def get_state(message):
@@ -213,8 +215,28 @@ def handle_group_info_state(message):
 
 
 @bot.message_handler(commands=['register'])
+def handle_register_category(message):
+    categories = Category.objects.all()
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    categories_buttons = CustomKeyboard([course.name for course in categories])
+    try:
+        bot.reply_to(
+            message,
+            "Kategoriyani tanlang:",
+            reply_markup=markup.add(*categories_buttons.create())
+        )
+        bot.set_state(
+            message.from_user.id,
+            state=RegistrationState.CATEGORY.value
+        )
+    except Exception as e:
+        print(f"Error at: {e}")
+
+
+@bot.message_handler(state=RegistrationState.COURSE.value)
 def handle_register_course(message):
-    courses = Course.objects.all()
+    category_name = message.text
+    courses = Course.objects.filter(category__name=category_name)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     courses_buttons = CustomKeyboard([course.name for course in courses])
     try:
@@ -307,34 +329,8 @@ def handle_phone_number(message):
 
 
 @bot.message_handler(state=RegistrationState.PHONE_NUMBER.value)
-def handle_parent_name(message):
-    user_info['PHONE_NUMBER'] = message.text
-    bot.reply_to(
-        message,
-        'Ota yoki onangizni ismlarini kiriting:'
-    )
-    bot.set_state(
-        message.from_user.id,
-        state=RegistrationState.PARENT_NAME.value
-    )
-
-
-@bot.message_handler(state=RegistrationState.PARENT_NAME.value)
-def handle_parent_name(message):
-    user_info['PARENT_NAME'] = message.text
-    bot.reply_to(
-        message,
-        'Ota yoki onangizni telefon raqamlarini kiriting (998901234567):'
-    )
-    bot.set_state(
-        message.from_user.id,
-        state=RegistrationState.PARENT_PHONE_NUMBER.value
-    )
-
-
-@bot.message_handler(state=RegistrationState.PARENT_PHONE_NUMBER.value)
 def handle_parent_phone_number(message):
-    user_info['PARENT_PHONE_NUMBER'] = message.text
+    user_info['PHONE_NUMBER'] = message.text
     try:
         course = get_object_or_404(Course, name=user_info['COURSE'])
         user, _ = User.objects.get_or_create(
@@ -345,7 +341,6 @@ def handle_parent_phone_number(message):
             parent_phone_number=user_info['PARENT_PHONE_NUMBER'],
             telegram_username=message.from_user.username,
             telegram_user_id=message.from_user.id
-
         )
         
         Enrollment.objects.create(

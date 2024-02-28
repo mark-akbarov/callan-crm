@@ -9,7 +9,7 @@ from account.views.otp import OTPSignupView, OTPVerificationAPIView
 from account.views.verification import VerifyUserAPIView, ReSendVerifyUserAPIView
 
 router = DefaultRouter()
-router.register('users', UserViewSet)
+# router.register('users', UserViewSet)
 router.register('enrollments', EnrollmentViewSet)
 
 

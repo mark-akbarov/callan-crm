@@ -29,3 +29,10 @@ class EnrollmentSerializer(serializers.ModelSerializer):
             'course',
             'knowledge_level'
         ]
+        
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user_instance = UserSerializer.create(UserSerializer(), validated_data=user_data)
+
+        enrollment_instance = Enrollment.objects.create(user=user_instance, **validated_data)
+        return enrollment_instance
