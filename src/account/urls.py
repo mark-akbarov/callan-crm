@@ -2,13 +2,16 @@ from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
 
-from account.views.otp import OTPSignupView, OTPVerificationAPIView
 from account.views.login import LoginAPIView
 from account.views.signup import SignupAPIView
+from account.views.account import UserViewSet, EnrollmentViewSet
+from account.views.otp import OTPSignupView, OTPVerificationAPIView
 from account.views.verification import VerifyUserAPIView, ReSendVerifyUserAPIView
 
-
 router = DefaultRouter()
+router.register('users', UserViewSet)
+router.register('enrollments', EnrollmentViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),

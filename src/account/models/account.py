@@ -5,21 +5,35 @@ from django.contrib.auth.models import AbstractUser
 from core.utils.base_model import BaseModel
 
 
+class UserType(models.IntegerChoices):
+    ADMIN = 0
+    TEACHER = 1
+    STUDENT = 2
+
+
+class KnowledgeLevel(models.TextChoices):
+    BEGINNER = 'beginner'
+    ELEMENTARY = 'elementary'
+    INTERMEDIATE = 'intermediate'
+    UPPER_INTERMEDIATE = 'upper intermediate'
+
+
 class User(AbstractUser):
     username = models.CharField(max_length=255, default=uuid.uuid4, unique=True, null=True)
+    type = models.CharField(choices=UserType.choices, max_length=15)
     phone_number = models.CharField(max_length=25, unique=True)    
     email = models.EmailField(max_length=255, unique=True, null=True)
     first_name = models.CharField(max_length=255, null=True)
     last_name = models.CharField(max_length=255, null=True)
-    parent_name = models.CharField(max_length=255, null=True)
-    parent_phone_number = models.CharField(max_length=25, unique=True, null=True)
+    # parent_name = models.CharField(max_length=255, null=True)
+    # parent_phone_number = models.CharField(max_length=25, unique=True, null=True)
     telegram_username = models.CharField(max_length=255, unique=True, null=True)
     telegram_user_id = models.PositiveIntegerField(unique=True, null=True)
     
     REQUIRED_FIELDS = ['phone_number']
     
     def __str__(self):
-        return self.phone_number
+        return f"{self.first_name} - {self.type}"
 
     class Meta:
         ordering = ('-date_joined',)
@@ -31,7 +45,7 @@ class User(AbstractUser):
 class Enrollment(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments')
     course = models.ForeignKey('course.Course', on_delete=models.CASCADE, related_name='enrollments')
-    knowledge_level = models.CharField(max_length=255)
+    knowledge_level = models.CharField(max_length=255, choices=KnowledgeLevel.choices)
     
     def __str__(self):
         return f"{self.user} -> {self.course}"

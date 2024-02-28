@@ -42,7 +42,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt:rw
       - ./certbot/www:/var/www/certbot:rw
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email markakbarov@gmail.com -d www.callaneducation.uz -d callaneducation.uz --agree-tos -v
+    # command: certonly --webroot -w /var/www/certbot --force-renewal --email markakbarov@gmail.com -d www.callaneducation.uz -d callaneducation.uz --agree-tos -v
 
 
 volumes:
