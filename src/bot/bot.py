@@ -8,8 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from telebot import TeleBot, types, custom_filters
 
 from core.settings import TELEGRAM_TOKEN
+from core.utils.alfa_crm import create_lead
 from course.models import Group, ExamGrade, Course, Category
-from course.serializers.group import GroupSerializer, GroupNameSerializer
 from account.models.account import User, Enrollment
 
 from bot.keyboards import (
@@ -44,8 +44,6 @@ class RegistrationState(enum.Enum):
     LAST_NAME = 'last name'
     PHONE_NUMBER = 'phone number'
     FINISH = 'finish registration'
-    # PARENT_NAME = 'parent name'
-    # PARENT_PHONE_NUMBER = 'phone phone number'
 
     
 def get_state(message):
@@ -271,7 +269,6 @@ def handle_first_name(message):
 
 @bot.message_handler(state=RegistrationState.KNOWLEDGE_LEVEL.value)
 def handle_knowledge_level(message):
-    bot.delete_state(message.from_user.id, message.chat.id)
     user_info['KNOWLEDGE_LEVEL'] = message.text
     existing_user = User.objects.filter(
         telegram_username=message.from_user.username, 
@@ -290,13 +287,25 @@ def handle_knowledge_level(message):
                 course=course,
                 knowledge_level=user_info['KNOWLEDGE_LEVEL']
             )
+            
+            create_lead(
+                name=f"{user.first_name} {user.last_name}",
+                phone=user.phone_number,
+                note=f"{user_info['COURSE']} - {user_info['KNOWLEDGE_LEVEL']}"
+            )
+            
+            print(f"{user.first_name} {user.last_name}")
+            print(type(user.phone_number))
+            print(f"{user_info['COURSE']} - {user_info['KNOWLEDGE_LEVEL']}")
+            
+
             bot.reply_to(
             message,
             "Siz ro'yxatdan muvaffaqiyatli o'tdingiz!\
                 \nSiz bilan 1-2 kun ichida administratorlarimiz aloqaga chiqishadi."
         )
         except Exception as e:
-            print(f"Error when creating Enrollment: {e}")
+            print(f"Error at: {e}")
     else:
         bot.reply_to(message, "Ismingizni kiriting:",)
         bot.set_state(
@@ -329,7 +338,7 @@ def handle_phone_number(message):
 
 
 @bot.message_handler(state=RegistrationState.PHONE_NUMBER.value)
-def handle_parent_phone_number(message):
+def handle_phone_number(message):
     user_info['PHONE_NUMBER'] = message.text
     try:
         course = get_object_or_404(Course, name=user_info['COURSE'])
@@ -337,8 +346,6 @@ def handle_parent_phone_number(message):
             first_name=user_info['FIRST_NAME'],
             last_name=user_info['LAST_NAME'],
             phone_number=user_info['PHONE_NUMBER'],
-            parent_name=user_info['PARENT_NAME'],
-            parent_phone_number=user_info['PARENT_PHONE_NUMBER'],
             telegram_username=message.from_user.username,
             telegram_user_id=message.from_user.id
         )
@@ -348,10 +355,18 @@ def handle_parent_phone_number(message):
             course=course,
             knowledge_level=user_info['KNOWLEDGE_LEVEL']
         )
+       
+        create_lead(
+            name=f"{user_info['FIRST_NAME']} + {user_info['LAST_NAME']}",
+            phone=user_info['PHONE_NUMBER'],
+            note=f"{user_info['COURSE']} - {user_info['KNOWLEDGE_LEVEL']}"
+        )
+        
         bot.reply_to(
         message,
-        "Siz ro'yxatdan muvaffaqiyatli o'tdingiz!\
+        f"Siz ro'yxatdan muvaffaqiyatli o'tdingiz!\
             \nSiz bilan 1-2 kun ichida administratorlarimiz aloqaga chiqishadi."
-    )
+        )
+        
     except Exception as e:
         print(f"Error when creating object: {e}")

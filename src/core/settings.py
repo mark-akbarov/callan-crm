@@ -33,6 +33,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '*',
     'www.callaneducation.uz', 
     'callaneducation.uz', 
     'localhost', 
@@ -133,6 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
@@ -203,3 +205,8 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+
+ALFA_CRM_EMAIL=os.getenv("ALFA_CRM_EMAIL")
+ALFA_CRM_TOKEN=os.getenv("ALFA_CRM_TOKEN")
+ALFA_CRM_URL=os.getenv("ALFA_CRM_URL")

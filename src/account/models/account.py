@@ -25,15 +25,13 @@ class User(AbstractUser):
     email = models.EmailField(max_length=255, unique=True, null=True, blank=True)
     first_name = models.CharField(max_length=255, null=True)
     last_name = models.CharField(max_length=255, null=True)
-    # parent_name = models.CharField(max_length=255, null=True)
-    # parent_phone_number = models.CharField(max_length=25, unique=True, null=True)
     telegram_username = models.CharField(max_length=255, unique=True, null=True, blank=True)
     telegram_user_id = models.PositiveIntegerField(unique=True, null=True, blank=True)
     
     REQUIRED_FIELDS = ['phone_number']
     
     def __str__(self):
-        return f"{self.first_name} - {self.type}"
+        return f"{self.first_name}"
 
     class Meta:
         ordering = ('-date_joined',)
