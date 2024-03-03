@@ -2,20 +2,20 @@ import uuid
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 from core.utils.base_model import BaseModel
 
 
-class UserType(models.IntegerChoices):
-    ADMIN = 0, 'Admin'
-    TEACHER = 1, 'Teacher'
-    STUDENT = 2, 'Student'
+class UserType(models.TextChoices):
+    ADMIN = "Admin"
+    TEACHER = "O'qituvchi"
+    STUDENT = "O'quvchi"
 
 
 class KnowledgeLevel(models.TextChoices):
-    BEGINNER = 'beginner'
-    ELEMENTARY = 'elementary'
-    INTERMEDIATE = 'intermediate'
-    UPPER_INTERMEDIATE = 'upper intermediate'
+    BEGINNER = "Boshlang'ich"
+    ELEMENTARY = "O'rta"
+    INTERMEDIATE = "Yuqori"
 
 
 class User(AbstractUser):
