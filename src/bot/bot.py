@@ -1,12 +1,17 @@
 import json
 import enum
+import datetime
 
 from django.http.response import HttpResponse
+from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from telebot import TeleBot, types, custom_filters
 
+from core import settings
 from core.settings import TELEGRAM_TOKEN
 from core.utils.alfa_crm import create_lead
 from course.models import Group, ExamGrade, Course, Category
@@ -17,7 +22,7 @@ from bot.keyboards import (
 
 )
 
-
+exam_grade = {}
 user_info = {}
 
 
@@ -30,10 +35,9 @@ class GetCourseResultsState(enum.Enum):
 
 
 class KnowledgeLevel(enum.Enum):
-    BEGINNER = 'beginner'
-    ELEMENTARY = 'elementary'
-    INTERMEDIATE = 'intermediate'
-    UPPER_INTERMEDIATE = 'upper intermediate'
+    BEGINNER = "Boshlang'ich"
+    ELEMENTARY = "O'rta"
+    INTERMEDIATE = "Yuqori"
     
 
 class RegistrationState(enum.Enum):
@@ -45,6 +49,13 @@ class RegistrationState(enum.Enum):
     PHONE_NUMBER = 'phone number'
     FINISH = 'finish registration'
 
+
+class SumbitResultState(enum.Enum):
+    GROUP = 'Group'
+    EXAM_NAME = 'Exam Name'
+    DATE = 'Date'
+    IMAGE = 'Image'
+    
     
 def get_state(message):
     return bot.get_state(message.from_user.id, message.chat.id)
@@ -92,8 +103,8 @@ def webhook(request):
         update = types.Update.de_json(data)
         bot.process_new_updates([update])
         return HttpResponse()
-    except Exception as errors:
-        print(f"Errors at : {errors}")
+    except json.JSONDecodeError:
+        print(f"")
 
 
 @bot.message_handler(commands=['help'])
@@ -108,6 +119,7 @@ Buyruqlar ro'yxati:
 
 /start - botni ishga tushirish
 /results - test natijalarini ko'rish
+/submit - test natijasini kiritish
 /courses - CALLAN o'quv markazidagi kurslar haqida ma'lumot
 /register - mavjud kurslarga yozilish
 /help - barcha buyruqlarni ko'rish
@@ -169,7 +181,7 @@ def handle_group_results(message):
 @bot.message_handler(state=GetCourseResultsState.COURSE_NAME.value)
 def handle_group_results(message):
     group = get_object_or_404(Group, name=message.text)
-    results = ExamGrade.objects.filter(group=group).last() # retrieve last test results
+    results = ExamGrade.objects.filter(group=group).order_by('-created_at').last() # retrieve last test results
     try:
         bot.send_photo(
             message.chat.id,
@@ -180,16 +192,124 @@ def handle_group_results(message):
         print(f"Error at: {e}")
 
 
+@bot.message_handler(commands=['submit'])
+def handle_submit_group_results(message):
+    telegram_user_id = message.from_user.id
+    user = get_object_or_404(User, telegram_user_id=telegram_user_id)
+    if user.type not in  ['0', '1']: # admin and teacher user type
+        bot.reply_to(message, "Sizda yetarli huquqlar yoq! Xatolik yuz bergan bo'lsa bot adminiga murojaat qiling.")
+    else:
+        groups = Group.objects.filter(teacher=user)
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+        group_markup = CustomKeyboard([group.name for group in groups])
+        try:
+            bot.reply_to(
+                message,
+                'Guruhingiz nomini tanlang:',
+                reply_markup=markup.add(*group_markup.create()),
+            )
+            bot.set_state(
+                message.from_user.id,
+                state=SumbitResultState.GROUP.value
+            )
+        except Exception as e:
+            print(f"Error at: {e}")
+
+
+@bot.message_handler(state=SumbitResultState.GROUP.value)
+def handle_submit_group_results(message):
+    exam_grade['group'] = message.text
+    bot.reply_to(
+        message,
+        "Test yoki imtihon nomini yozing (Unit Test1, Progress Test 1):",
+    )
+    bot.set_state(
+        message.from_user.id,
+        state=SumbitResultState.EXAM_NAME.value
+    )
+
+
+@bot.message_handler(state=SumbitResultState.EXAM_NAME.value)
+def handle_submit_group_results(message):
+    exam_grade['exam_name'] = message.text
+    bot.reply_to(
+        message,
+        "Imtixon sanasini kiriting (KUN/OY/YIL):",
+    )
+    bot.set_state(
+        message.from_user.id,
+        state=SumbitResultState.DATE.value
+    )
+
+
+@bot.message_handler(state=SumbitResultState.DATE.value)
+def handle_submit_group_results(message):
+    print(message.text)
+    exam_grade['date'] = message.text
+    bot.reply_to(
+        message,
+        "Test yoki imtihon natijasini yuklang (foto yoki pdf):"
+    )
+    bot.set_state(
+        message.from_user.id,
+        state=SumbitResultState.IMAGE.value
+    )
+
+
+@bot.message_handler(content_types=['photo'], state=SumbitResultState.IMAGE.value)
+def handle_submit_group_results(message):
+    import requests
+    
+    try:
+        day, month, year  = exam_grade['date'].split('/')
+        group = Group.objects.get(name=exam_grade['group'])
+        ''.replace()
+        exam_grade['photo'] = message.photo[-1].file_id
+        file_info = bot.get_file(exam_grade['photo'])
+        file_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_info.file_path}"
+        response = requests.get(file_url)
+        
+        exam = ExamGrade.objects.create( 
+            group=group, 
+            name=exam_grade['exam_name'],
+            date=datetime.datetime(int(year), int(month), int(day)),       
+        )
+        exam.grades_photo.save(
+            f"{exam_grade['group']}_{exam_grade['exam_name'].replace(' ', '_')}_{exam_grade['date']}", 
+            ContentFile(response.content)
+            )        
+
+        bot.reply_to(
+            message,
+            "Natijalar saqlanib olindi! Ko'rish uchun /results tugmasini bosing.",
+        )
+
+    except Exception as e:
+        print(f"Error at: {e}")
+
+
+@bot.message_handler(state=SumbitResultState.IMAGE.value)
+def handle_submit_group_results_image_errors(message):
+    bot.reply_to(
+        message,
+        "File yoki rasm tog'ri formatta emas!",
+    )
+    bot.set_state(
+        message.from_user.id,
+        state=SumbitResultState.IMAGE.value
+    )
+
+
 @bot.message_handler(commands=['courses'])
 def handle_courses(message):
     courses = Course.objects.all()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    group_markup = CustomKeyboard([course.name for course in courses])
+    course_markup = CustomKeyboard([course.name for course in courses])
     try:
         bot.reply_to(
             message,
             'Kurs nomini tanlang:',
-            reply_markup=markup.add(*group_markup.create()),
+            reply_markup=markup.add(*course_markup.create()),
         )
         bot.set_state(
             message.from_user.id,

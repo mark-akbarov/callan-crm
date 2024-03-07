@@ -15,7 +15,7 @@ class ExamGrade(BaseModel):
     name = models.CharField(max_length=255)
     group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='exam_grades')
     date = models.DateField()
-    grades_photo = models.ImageField()
+    grades_photo = models.ImageField(null=True, blank=True)
     
     def __str__(self):
         return f"{self.name} - {self.group}  ({self.date})"
