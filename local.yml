@@ -18,7 +18,7 @@ services:
     image: postgres:12-bookworm
     restart: always
     volumes:
-      - ./data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -26,6 +26,6 @@ services:
   
 
 volumes:
-  data:
+  postgres_data:
   static_volume:
   media_volume:
