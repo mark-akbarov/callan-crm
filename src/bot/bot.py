@@ -11,11 +11,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from telebot import TeleBot, types, custom_filters
 
-from core import settings
 from core.settings import TELEGRAM_TOKEN
 from core.utils.alfa_crm import create_lead
 from course.models import Group, ExamGrade, Course, Category
-from account.models.account import User, Enrollment
+from account.models.account import User, Enrollment, UserType
 
 from bot.keyboards import (
     CustomKeyboard,
@@ -141,6 +140,10 @@ def handle_cancel(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start_command(message):
+    User.objects.get_or_create(
+        telegram_user_id=message.from_user.id,
+        telegram_username=message.from_user.username
+    )
     bot.send_location(
         message.chat.id,
         latitude=40.53436921352104,
@@ -158,7 +161,10 @@ Botning barcha funksiyalarini ko'rish uchun /help tugmasini bosing.
 
 @bot.message_handler(commands=['results'])
 def handle_group_results(message):
-    groups = Group.objects.all()
+    try:
+        groups = Group.objects.filter(teacher__telegram_user_id=message.from_user.id)
+    except Exception as e:
+        print(e)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     course_markup = CustomKeyboard(
         [group.name for group in groups], 
@@ -186,7 +192,11 @@ def handle_group_results(message):
         bot.send_photo(
             message.chat.id,
             results.grades_photo,
-            reply_to_message_id=message.id
+            reply_to_message_id=message.id,
+            caption=f"""
+Imtihon nomi: {results.name}
+Sana: {results.date}
+"""
         )
     except Exception as e:
         print(f"Error at: {e}")
@@ -196,7 +206,7 @@ def handle_group_results(message):
 def handle_submit_group_results(message):
     telegram_user_id = message.from_user.id
     user = get_object_or_404(User, telegram_user_id=telegram_user_id)
-    if user.type not in  ['0', '1']: # admin and teacher user type
+    if user.type not in  [UserType.ADMIN, UserType.TEACHER]: # admin and teacher user type
         bot.reply_to(message, "Sizda yetarli huquqlar yoq! Xatolik yuz bergan bo'lsa bot adminiga murojaat qiling.")
     else:
         groups = Group.objects.filter(teacher=user)
@@ -263,7 +273,6 @@ def handle_submit_group_results(message):
     try:
         day, month, year  = exam_grade['date'].split('/')
         group = Group.objects.get(name=exam_grade['group'])
-        ''.replace()
         exam_grade['photo'] = message.photo[-1].file_id
         file_info = bot.get_file(exam_grade['photo'])
         file_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_info.file_path}"
