@@ -130,6 +130,7 @@ Buyruqlar ro'yxati:
 
 @bot.message_handler(commands=['cancel'])
 def handle_cancel(message):
+    print("hello")
     bot.delete_state(message.from_user.id, message.chat.id)
     bot.reply_to(
         message,
