@@ -1,3 +1,12 @@
+//  loader
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("page").style.display = "block";
+}
+
+//event listeren
+window.addEventListener("load", showPage);
+
 const dropdowns = document.querySelectorAll(".dropdown");
 
 dropdowns.forEach((dropdown) => {
@@ -60,4 +69,16 @@ marquee.addEventListener("animationiteration", () => {
   setTimeout(() => {
     marquee.style.animation = "marquee 20s linear infinite"; // Adjust the duration and timing function as needed
   }, 0);
+});
+
+// Get the button element by its ID
+const redirectButton = document.getElementById("about");
+
+// Add a click event listener to the button
+redirectButton.addEventListener("click", function () {
+  // URL of the HTML file you want to redirect to
+  const aboutPageUrl = "about.html";
+
+  // Open the URL in a new tab
+  window.open(aboutPageUrl, "_blank");
 });

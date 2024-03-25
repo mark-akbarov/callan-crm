@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Callan Education</title>
+    <script defer src="js/main.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
@@ -54,6 +56,10 @@
     <link rel="stylesheet" href="styles/teachers.css" />
   </head>
   <body>
+    <div id="loader">
+      <div class="loader-spinner"></div>
+    </div>
+
     <div class="navbar" id="navbar">
       <div class="btn-group fullscreen-dropdown">
         <button
@@ -436,7 +442,7 @@
           adipisicing elit. Facilis fugiat fugit iusto rerum eos deleniti eius?
           Fuga vero nam explicabo.
         </p>
-        <button class="about_more more">
+        <button id="about" class="about_more more">
           Batafsil <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
@@ -953,7 +959,6 @@
       <!-- End of .container -->
     </footer>
     <!-- footer finished -->
-    <script src="js/main.js"></script>
     <script src="js/hero.js"></script>
     <script src="js/cources.js"></script>
     <!-- <script
