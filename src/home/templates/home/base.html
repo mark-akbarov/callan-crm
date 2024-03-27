@@ -1,0 +1,972 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callan Education</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@6.7.0/swiper-bundle.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/glower.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/courses.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static  'css/teachers.css' %}" />
+  </head>
+  <body>
+    <div class="navbar" id="navbar">
+      <div class="btn-group fullscreen-dropdown">
+        <button
+          type="button"
+          class="btn dropdown-toggle"
+          data-bs-toggle="dropdown"
+          data-bs-display="static"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-lg-start">
+          <li>
+            <a class="dropdown-item no-margin" href="#home">bosh sahifa</a>
+          </li>
+          <li>
+            <a class="dropdown-item no-margin" href="#about">biz haqimizda</a>
+          </li>
+          <li>
+            <a class="dropdown-item no-margin" href="#courses">kurslar</a>
+          </li>
+          <li>
+            <a class="dropdown-item no-margin" href="#teachers"
+              >o'qituvchilar</a
+            >
+          </li>
+
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <div class="glower">
+              <a href="#enroll" class="dropdown-item no-margin enroll"
+                >o'qishni boshlash</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="logo">
+        <img class="logo_img" src="../../static/images/logo.png" alt="" />
+        <h1 class="no-margin">Callan Education</h1>
+      </div>
+      <div class="links">
+        <a href="#home">bosh sahifa</a>
+        <a href="#about">biz haqimizda</a>
+        <a href="#courses">kurslar</a>
+        <a href="#teachers">o'qituvchilar</a>
+        <div class="glower">
+          <a href="#enroll " style="background-color: #ffbf00" class="enroll"
+            >o'qishni boshlash</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--hero section-->
+    <div id="home" class="hero">
+      <div class="bdt-timeline-container">
+        <div class="upk-salf-slider-wrapper">
+          <div class="swiper-container mySwiper2">
+            <div class="swiper-wrapper">
+              <div class="upk-salf-item swiper-slide">
+                <div class="upk-salf-image-wrap">
+                  <img class="upk-xanc-img" src="../../static/images/callan_outside1.jpg" />
+                </div>
+                <div class="upk-salf-content-wrap">
+                  <h3
+                    class="upk-salf-title"
+                    data-swiper-parallax-y="-150"
+                    data-swiper-parallax-duration="1200"
+                  >
+                    Biz bilan yuqori natijalarga erishing!
+                  </h3>
+                  <div
+                    class="upk-salf-desc"
+                    data-swiper-parallax-y="-200"
+                    data-swiper-parallax-duration="1400"
+                  >
+                    bizdagi sog'lom muhit va bilimli o'qituvchilar bilan
+                    mustahkam bilim olishingiz mumkin
+                  </div>
+                  <div
+                    class="upk-salf-button"
+                    data-swiper-parallax-y="-300"
+                    data-swiper-parallax-duration="1500"
+                  >
+                    <a class="link link--arrowed" href="#"
+                      >davom etish
+                      <svg
+                        class="arrow-icon"
+                        xmlns=""
+                        width="28"
+                        height="28"
+                        viewBox="0 0 32 32"
+                      >
+                        <g
+                          fill="none"
+                          stroke="#ff215a"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"
+                          stroke-miterlimit="10"
+                        >
+                          <circle
+                            class="arrow-icon--circle"
+                            cx="16"
+                            cy="16"
+                            r="15.12"
+                          ></circle>
+                          <path
+                            class="arrow-icon--arrow"
+                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
+                          ></path>
+                        </g>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="upk-salf-item swiper-slide">
+                <div class="upk-salf-image-wrap">
+                  <img class="upk-xanc-img" src="../../static/images/callan_family.jpg" />
+                </div>
+                <div class="upk-salf-content-wrap">
+                  <h3
+                    class="upk-salf-title"
+                    data-swiper-parallax-y="-150"
+                    data-swiper-parallax-duration="1200"
+                  >
+                    tajribali va bilimli o'qituvchilar bilan
+                  </h3>
+                  <div
+                    class="upk-salf-desc"
+                    data-swiper-parallax-y="-200"
+                    data-swiper-parallax-duration="1400"
+                  >
+                    siz bilan o'z sohasida yetarli tajriba va bilimga ega
+                    mentorlar shug'ullanishadi
+                  </div>
+
+                  <div
+                    class="upk-salf-button"
+                    data-swiper-parallax-y="-300"
+                    data-swiper-parallax-duration="1500"
+                  >
+                    <a class="link link--arrowed" href="#"
+                      >davom etish
+                      <svg
+                        class="arrow-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="28"
+                        height="28"
+                        viewBox="0 0 32 32"
+                      >
+                        <g
+                          fill="none"
+                          stroke="#ff215a"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"
+                          stroke-miterlimit="10"
+                        >
+                          <circle
+                            class="arrow-icon--circle"
+                            cx="16"
+                            cy="16"
+                            r="15.12"
+                          ></circle>
+                          <path
+                            class="arrow-icon--arrow"
+                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
+                          ></path>
+                        </g>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="upk-salf-item swiper-slide">
+                <div class="upk-salf-image-wrap">
+                  <img class="upk-xanc-img" src="../../static/images/callan_inside.jpg" />
+                </div>
+                <div class="upk-salf-content-wrap">
+                  <h3
+                    class="upk-salf-title"
+                    data-swiper-parallax-y="-150"
+                    data-swiper-parallax-duration="1200"
+                  >
+                    qulay narxdagi o'quv kurslari
+                  </h3>
+                  <div
+                    class="upk-salf-desc"
+                    data-swiper-parallax-y="-200"
+                    data-swiper-parallax-duration="1400"
+                  >
+                    to'lovlarni xohlagan usulda to'lang, birinchi darsimiz
+                    teking
+                  </div>
+
+                  <div
+                    class="upk-salf-button"
+                    data-swiper-parallax-y="-300"
+                    data-swiper-parallax-duration="1500"
+                  >
+                    <a class="link link--arrowed" href="#"
+                      >read more
+                      <svg
+                        class="arrow-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="28"
+                        height="28"
+                        viewBox="0 0 32 32"
+                      >
+                        <g
+                          fill="none"
+                          stroke="#ff215a"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"
+                          stroke-miterlimit="10"
+                        >
+                          <circle
+                            class="arrow-icon--circle"
+                            cx="16"
+                            cy="16"
+                            r="15.12"
+                          ></circle>
+                          <path
+                            class="arrow-icon--arrow"
+                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
+                          ></path>
+                        </g>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="upk-salf-item swiper-slide">
+                <div class="upk-salf-image-wrap">
+                  <img class="upk-xanc-img" src="../../static/images/cources.jpg" />
+                </div>
+                <div class="upk-salf-content-wrap">
+                  <h3
+                    class="upk-salf-title"
+                    data-swiper-parallax-y="-150"
+                    data-swiper-parallax-duration="1200"
+                  >
+                    onlayn ro'yxatdan o'ting
+                  </h3>
+                  <div
+                    class="upk-salf-desc"
+                    data-swiper-parallax-y="-200"
+                    data-swiper-parallax-duration="1400"
+                  >
+                    hozir ro'yxatda o'ting ertadan darslarga qatnashing
+                  </div>
+
+                  <div
+                    class="upk-salf-button"
+                    data-swiper-parallax-y="-300"
+                    data-swiper-parallax-duration="1500"
+                  >
+                    <a class="link link--arrowed" href="#"
+                      >davom etish
+                      <svg
+                        class="arrow-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="28"
+                        height="28"
+                        viewBox="0 0 32 32"
+                      >
+                        <g
+                          fill="none"
+                          stroke="#ff215a"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"
+                          stroke-miterlimit="10"
+                        >
+                          <circle
+                            class="arrow-icon--circle"
+                            cx="16"
+                            cy="16"
+                            r="15.12"
+                          ></circle>
+                          <path
+                            class="arrow-icon--arrow"
+                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
+                          ></path>
+                        </g>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="upk-page-scroll">
+            <a class="arrow-up">
+              <div class="long-arrow-left"></div>
+              <span class="arrow-slide"></span>
+            </a>
+          </div>
+          <div class="upk-salf-nav-pag-wrap">
+            <div class="upk-salf-navigation">
+              <div class="upk-button-prev upk-n-p">
+                <a class="link link--arrowed" href="#">
+                  <svg
+                    class="arrow-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 32 32"
+                  >
+                    <g
+                      fill="none"
+                      stroke="#ff215a"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="10"
+                    >
+                      <circle
+                        class="arrow-icon--circle"
+                        cx="16"
+                        cy="16"
+                        r="15.12"
+                      ></circle>
+                      <path
+                        class="arrow-icon--arrow"
+                        d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+              <div class="upk-button-next upk-n-p">
+                <a class="link link--arrowed" href="#">
+                  <svg
+                    class="arrow-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 32 32"
+                  >
+                    <g
+                      fill="none"
+                      stroke="#ff215a"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="10"
+                    >
+                      <circle
+                        class="arrow-icon--circle"
+                        cx="16"
+                        cy="16"
+                        r="15.12"
+                      ></circle>
+                      <path
+                        class="arrow-icon--arrow"
+                        d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="upk-salf-pagi-wrap">
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- hero ends -->
+
+    <!-- about us -->
+    <div class="about">
+      <div id="about" class="text_box">
+        <p class="about_info info">
+          <span>Callan Education</span> Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Facilis fugiat fugit iusto rerum eos deleniti eius?
+          Fuga vero nam explicabo.
+        </p>
+        <button class="about_more more">
+          Batafsil <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="img_box">
+        <img src="../../static/images/callan_outside.jpg" alt="callan edu" />
+      </div>
+    </div>
+    <!-- about finished -->
+    <!-- courses -->
+    <div class="cources" id="courses">
+      <div class="slider">
+        <div class="section_info">
+          <h1 class="no-margin courses_title title">Kurslar</h1>
+          <p class="courses_info no-margin">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt,
+            consequatur!
+          </p>
+        </div>
+
+        <div class="slider_inner">
+          <button id="prev" class="btn btn-scroll">
+            <i class="las la-angle-left"></i>
+          </button>
+          <div class="card-content">
+            <!-- Card 1 -->
+            <div class="card">
+              <!-- here is order -->
+              <h4>1</h4>
+              <div class="card-img">
+                <!-- here is image -->
+                <img src="../../static/images/english.png" alt="" />
+              </div>
+              <div class="card-text">
+                <!-- here is title of course card -->
+                <h2>Ingliz Tili</h2>
+                <!-- here is description of course -->
+                <p>
+                  I show you how to make a card group easily and very functional
+                  with the use of flexbox and its magic and JavaScript.
+                </p>
+                <p></p>
+              </div>
+            </div>
+            <!-- Card End -->
+
+            <!-- Card 2-->
+            <div class="card">
+              <h4>2</h4>
+              <div class="card-img">
+                <img src="../../static/images/russian.jpg" alt="" />
+                <!-- <img
+                class="blur"
+                src="https://photo-cdn.icons8.com/assets/sata/editor/object/456/1e8ed695-cab8-45b2-b09c-153a7970f9f3.png"
+                alt=""
+              /> -->
+              </div>
+              <div class="card-text">
+                <h2>Rus Tili</h2>
+                <p>
+                  I show you how to make a card group easily and very functional
+                  with the use of flexbox and its magic and JavaScript.
+                </p>
+                <p></p>
+              </div>
+            </div>
+            <!-- Card End -->
+
+            <!-- Card 3-->
+            <div class="card">
+              <h4>3</h4>
+
+              <div class="card-img">
+                <img src="../../static/images/arabic.jpg" alt="" />
+              </div>
+              <div class="card-text">
+                <h2>Arab Tili</h2>
+                <p>
+                  I show you how to make a card group easily and very functional
+                  with the use of flexbox and its magic and JavaScript.
+                </p>
+                <p></p>
+              </div>
+            </div>
+            <!-- Card End -->
+
+            <!-- Card 4 -->
+            <div class="card">
+              <h4>4</h4>
+
+              <div class="card-img">
+                <img src="../../static/images/IT.jpg" alt="" />
+              </div>
+              <div class="card-text">
+                <h2>IT Kurslari</h2>
+                <p>
+                  I show you how to make a card group easily and very functional
+                  with the use of flexbox and its magic and JavaScript.
+                </p>
+                <p></p>
+              </div>
+            </div>
+            <!-- Card End -->
+
+            <!-- Card 5-->
+            <div id="down" class="card">
+              <h4>5</h4>
+
+              <div class="card-img">
+                <img src="../../static/images/xattotlik.jpg" alt="" />
+              </div>
+              <div class="card-text">
+                <h2>Xattotlik Kurslari</h2>
+                <p>
+                  I show you how to make a card group easily and very functional
+                  with the use of flexbox and its magic and JavaScript.
+                </p>
+                <p></p>
+              </div>
+            </div>
+            <!-- Card End -->
+          </div>
+          <button id="next" class="btn btn-scroll">
+            <i class="las la-angle-right"></i>
+          </button>
+        </div>
+        <button class="courses_more more">
+          <a href="courses.html" target="_blank"
+            >Batafsil <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </button>
+      </div>
+    </div>
+    <!-- courses finished  -->
+    <!-- teachers  -->
+    <div class="teachers" id="teachers">
+      <div class="teacher_grid">
+        <div class="section_info">
+          <h1 class="no-margin teachers_title">O'qituvchilar</h1>
+          <p class="no-margin teachers_info">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt,
+            consequatur!
+          </p>
+        </div>
+        <div class="teacher_card">
+          <div class="card_item">
+            <div class="card_img"><img src="../../static/images/english.png" alt="" /></div>
+            <div class="card_body">
+              <h1 class="name">Ism Familya</h1>
+              <h3 class="field">Ingliz tili</h3>
+
+              <p class="natija">IELTS: 7.5</p>
+              <p class="tajriba">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Molestias!
+              </p>
+            </div>
+          </div>
+          <div class="card_item">
+            <div class="card_img"><img src="../../static/images/english.png" alt="" /></div>
+            <div class="card_body">
+              <h1 class="name">Ism Familya</h1>
+              <h3 class="field">Rus Tili</h3>
+
+              <p class="natija">IELTS: 7.5</p>
+              <p class="tajriba">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Molestias!
+              </p>
+            </div>
+          </div>
+          <div class="card_item">
+            <div class="card_img"><img src="../../static/images/english.png" alt="" /></div>
+            <div class="card_body">
+              <h1 class="name">Ism Familya</h1>
+              <h3 class="field">Arab Tili</h3>
+
+              <p class="natija">IELTS: 7.5</p>
+              <p class="tajriba">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Molestias!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="teacher_card_row">
+          <div class="card_item">
+            <div class="card_img">
+              <img src="../../static/images/english.png" alt="" />
+            </div>
+            <div class="card_body">
+              <h1 class="name">Ism Familya</h1>
+              <h3 class="field">Xattotlik</h3>
+
+              <p class="natija">Tajriba: 2 yildan ortiq</p>
+              <p class="tajriba">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Molestias!
+              </p>
+            </div>
+          </div>
+          <div class="card_item">
+            <div class="card_img">
+              <img src="../../static/images/english.png" alt="" />
+            </div>
+            <div class="card_body">
+              <h1 class="name">Ism Familya</h1>
+              <h3 class="field">IT, dasturlash</h3>
+
+              <p class="natija">Tajriba: 2 yildan ortiq</p>
+              <p class="tajriba">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Molestias!
+              </p>
+            </div>
+          </div>
+        </div>
+        <button class="teachers_more more">
+          Batafsil <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+    <!-- teachers finished -->
+    <!-- enroll -->
+    <div class="form">
+      <div class="form_description">
+        <h1 class="title no-margin">Hoziroq kursga yoziling</h1>
+        <p class="info">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+        </p>
+      </div>
+      <div id="enroll" class="form_input">
+        <div class="flex_box">
+          <div class="flex_item">
+            <p for="name_input">Ism Sharifingiz <span>*</span></p>
+            <input
+              id="fullName"
+              placeholder="Ism Familyani kiriting"
+              type="text"
+              required
+              autocomplete="name"
+            />
+          </div>
+          <div class="flex_item">
+            <p for="usr_date">Tug'ilgan oy/kun/yil <span>*</span></p>
+            <input
+              type="date"
+              required
+              name=""
+              id="dateofBirth"
+              autocomplete="bday"
+            />
+          </div>
+        </div>
+        <div class="flex_box">
+          <div class="flex_item">
+            <p for="usr_number">Telefon raqam <span>*</span></p>
+            <input
+              type="tel"
+              name=""
+              id="telNumber"
+              placeholder="+998"
+              autocomplete="tel-national"
+            />
+          </div>
+          <div class="flex_item">
+            <p for="select">Fanni tanlang <span>*</span></p>
+            <div class="dropdown">
+              <div class="select">
+                <div class="selected placeholder"></div>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="dropdown-item" id="frontEnd" value="1">
+                  Front-end(IT)
+                </li>
+                <li class="dropdown-item" id="IELTS" value="2">IELTS</li>
+                <li class="dropdown-item" id="msOffice" value="3">
+                  Microsoft Office
+                </li>
+                <li class="dropdown-item" id="mobiloGraph" value="4">
+                  Mobilografiya
+                </li>
+                <li class="dropdown-item" id="graphicDesign" value="5">
+                  Grafik dizayn
+                </li>
+                <li class="dropdown-item" id="arabTili" value="6">Arab tili</li>
+                <li class="dropdown-item" id="flutter" value="7">
+                  Flutter(IT)
+                </li>
+                <li class="dropdown-item" id="bugalteriya" value="8">
+                  Buxgalteriya
+                </li>
+                <li class="dropdown-item" id="englishLang" value="9">
+                  Ingliz tili
+                </li>
+                <li class="dropdown-item" id="russianLang" value="10">
+                  Rus tili
+                </li>
+                <li class="dropdown-item" id="smm" value="11">SMM</li>
+                <li class="dropdown-item" id="xattot_Lik" value="12">
+                  Xattotlik
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <textarea
+          name=""
+          id="additionals"
+          cols=""
+          rows=""
+          placeholder="Qo'shimcha ma'lumotlar"
+        ></textarea>
+
+        <div class="send">
+          <button class="submit" type="submit" id="submit">Yuborish</button>
+          <button class="erase" type="reset" onclick="resetForm()">
+            O'chirish
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- enroll finished -->
+
+    <!-- partners -->
+    <div class="partners">
+      <h1 class="title">Hamkorlarimiz</h1>
+      <div class="marquee-container">
+        <marquee
+          class="marquee-content"
+          behavior="scroll"
+          direction="left"
+          scrollamount="5"
+        >
+          <!-- Your content goes here -->
+          <img class="lsbu" src="../../static/images/LSBU2020logo.png" alt="" />
+          <img
+            class="reading"
+            src="../../static/images/University-of-Reading-Logo-removebg-preview.png"
+            alt=""
+          />
+          <img
+            class="yilogo"
+            src="../../static/images/dQxFoFhnWm6TzmEg28EwAHcUM9mE5HWQ_medium-removebg-preview.png"
+            alt=""
+          />
+          <img
+            class="east"
+            src="../../static/images/university-of-east-london8981-removebg-preview.png"
+            alt=""
+          />
+          <img class="oieg" src="../../static/images/OIEG-1-removebg-preview.png" alt="" />
+          <!-- Repeat your content as needed -->
+        </marquee>
+      </div>
+    </div>
+    <!-- partners finished -->
+
+    <!-- footer -->
+    <footer>
+      <!-- Remove the container if you want to extend the Footer to full width. -->
+      <div class="container my-5">
+        <!-- Footer -->
+        <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #45526e"
+        >
+          <!-- Grid container -->
+          <div class="container p-4 pb-0">
+            <!-- Section: Links -->
+            <section class="">
+              <!--Grid row-->
+              <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                  <h6 class="text-uppercase mb-4 font-weight-bold">
+                    Callan Education
+                  </h6>
+                  <p>
+                    Callan Education bilan o'z maqsadlaringizni amalga oshiring
+                  </p>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none" />
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                  <h6 class="text-uppercase mb-4 font-weight-bold">batafsil</h6>
+                  <p>
+                    <a class="text-white">statistika</a>
+                  </p>
+                  <p>
+                    <a class="text-white">bizning hamkorlar</a>
+                  </p>
+                  <p>
+                    <a class="text-white">jamoaga qo'shilish</a>
+                  </p>
+                  <p>
+                    <a class="text-white">sertifikatlar</a>
+                  </p>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none" />
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                  <h6 class="text-uppercase mb-4 font-weight-bold">
+                    kerakli linklar
+                  </h6>
+                  <p>
+                    <a class="text-white">ko'p soralgan savollar</a>
+                  </p>
+                  <p>
+                    <a class="text-white">natijalar</a>
+                  </p>
+                  <p>
+                    <a class="text-white">narxlar</a>
+                  </p>
+                  <p>
+                    <a class="text-white">yordam</a>
+                  </p>
+                </div>
+
+                <!-- Grid column -->
+                <hr class="w-100 clearfix d-md-none" />
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                  <h6 class="text-uppercase mb-4 font-weight-bold">
+                    bog'lanish
+                  </h6>
+                  <p><i class="fas fa-home mr-3"></i> Qo'qon, Hamza, 12-uy</p>
+                  <p>
+                    <i class="fas fa-envelope mr-3"></i>
+                    callanedu@gmail.com
+                  </p>
+                  <p><i class="fas fa-phone mr-3"></i> (91) 150 00 16</p>
+                  <p><i class="fas fa-phone mr-3"></i> (97) 629 11 11</p>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+
+            <hr class="my-3" />
+
+            <!-- Section: Copyright -->
+            <section class="p-3 pt-0">
+              <div class="row d-flex align-items-center">
+                <!-- Grid column -->
+                <div class="col-md-7 col-lg-8 text-center text-md-start">
+                  <!-- Copyright -->
+                  <div class="p-3">
+                    © 2024:
+                    <a
+                      class="text-white"
+                      href="https://new.birdarcha.uz/document/b0fcf782-b48b-4add-9326-7da6b4cadde0"
+                      >Callan Education Group</a
+                    >
+                  </div>
+                  <!-- Copyright -->
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div
+                  class="social_links col-md-5 col-lg-4 ml-lg-0 text-center text-md-end"
+                >
+                  <!-- Facebook -->
+                  <a
+                    class="btn btn-outline-light btn-floating m-1"
+                    class="text-white"
+                    role="button"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+
+                  <!-- Twitter -->
+                  <a
+                    class="btn btn-outline-light btn-floating m-1"
+                    class="text-white"
+                    role="button"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+
+                  <!-- Google -->
+                  <a
+                    class="btn btn-outline-light btn-floating m-1"
+                    class="text-white"
+                    role="button"
+                    ><i class="fab fa-google"></i
+                  ></a>
+
+                  <!-- Instagram -->
+                  <a
+                    class="btn btn-outline-light btn-floating m-1"
+                    class="text-white"
+                    role="button"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                </div>
+                <!-- Grid column -->
+              </div>
+            </section>
+            <!-- Section: Copyright -->
+          </div>
+          <!-- Grid container -->
+        </footer>
+        <!-- Footer -->
+      </div>
+      <!-- End of .container -->
+    </footer>
+    <!-- footer finished -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/hero.js' %}"></script>
+    <script src="{% static 'js/courses.js' %}"></script>
+    <!-- <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.7.0/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

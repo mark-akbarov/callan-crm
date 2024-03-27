@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+
 from bot.bot import webhook
 
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('api/v1/accounts/', include('account.urls')),
     path('api/v1/courses/', include('course.urls')),
     path('api/v1/bot/', webhook),
+    path('', include('home.urls'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

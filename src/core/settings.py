@@ -20,7 +20,7 @@ load_dotenv('../.env')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     # local
     'account',
     'course',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -110,7 +111,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
+        'HOST': 'localhost',
         'PORT': os.getenv('DB_PORT'),
     }
 }

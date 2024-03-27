@@ -6,8 +6,6 @@ from django.http.response import HttpResponse
 from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from django.core.exceptions import ObjectDoesNotExist
-
 
 from telebot import TeleBot, types, custom_filters
 

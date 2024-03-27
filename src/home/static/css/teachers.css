@@ -1,0 +1,85 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+.teachers {
+  width: 100%;
+}
+.teacher_grid {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 4rem;
+}
+
+.teacher_card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6rem;
+}
+.card_item {
+  width: 300px;
+  height: 420px;
+  text-align: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  background-color: #e9ebef;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.318);
+  transition: all ease 0.3s;
+  border-radius: 10px;
+}
+
+.card_img {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.card_img img {
+  height: 180px;
+  /* min-width: 100%; */
+  transition: all ease 0.3s;
+}
+
+.card_item:hover .card_img img {
+  scale: 1.05;
+}
+.card_item:hover {
+  box-shadow: none;
+  cursor: default;
+}
+.teachers_bnt {
+  border-bottom: dashed 2px black;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+.card_body {
+  padding: 15px;
+}
+.teacher_card_row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6rem;
+}
+@media screen and (max-width: 1100px) {
+  .teacher_card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  .teacher_card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 6rem;
+  }
+  .teacher_card_row {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 6rem;
+  }
+}
