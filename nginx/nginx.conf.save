@@ -1,0 +1,40 @@
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    server_tokens off;
+    charset utf-8;
+
+    server {
+        listen 80 default_server;
+
+        server_name _;
+
+        rewrite ^/(.*) https://$host/$1 permanent;
+    }
+
+    server {
+	listen [::]:443 ssl;
+        listen 443 ssl;
+        ssl_certificate     /etc/letsencrypt/live/www.callaneducation.uz/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/www.callaneducation.uz/privkey.pem;
+        server_name www.callaneducation.uz callaneducation.uz;
+        root /var/www/html;
+        index index.php index.html index.htm;
+
+
+        location / {
+            proxy_pass http://web:8000/;
+        }
+
+	location /static {
+	    alias http://web:8000/static/;
+	}
+
+        location ~ /.well-known/acme-challenge/ {
+            root /var/www/certbot;
+        }
+    }
+}
