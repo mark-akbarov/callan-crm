@@ -139,15 +139,10 @@ def handle_cancel(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start_command(message):
-    User.objects.get_or_create(
-        telegram_user_id=message.from_user.id,
-        telegram_username=message.from_user.username
-    )
     bot.send_location(
         message.chat.id,
         latitude=40.53436921352104,
         longitude=70.94687947342611,
-        heading="Hello",
     )
     bot.reply_to(
         message, 
