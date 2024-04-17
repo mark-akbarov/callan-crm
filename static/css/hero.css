@@ -422,7 +422,6 @@ body {
 @media (min-width: 1440px) {
   .bdt-timeline-container {
     width: 100%;
-    height: 0;
   }
   .upk-salf-slider-wrapper {
     height: 600px;
