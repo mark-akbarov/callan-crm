@@ -18,7 +18,7 @@ def get_token(email, api_token):
     if response.status_code == 200:
         return response.json()
     else:
-        return response.content
+        return response.json()
 
 
 def create_lead(name, phone, note, branch_ids=1, legal_type=1, color=blue, is_study=0):

@@ -64,7 +64,6 @@ def remove_inline_keyboard(call):
     bot.edit_message_reply_markup(chat_id=chat_id, message_id=message_id, reply_markup=None)
 
 
-
 bot = TeleBot(TELEGRAM_TOKEN)
 bot.add_custom_filter(custom_filters.StateFilter(bot))
 
@@ -128,7 +127,6 @@ Buyruqlar ro'yxati:
 
 @bot.message_handler(commands=['cancel'])
 def handle_cancel(message):
-    print("hello")
     bot.delete_state(message.from_user.id, message.chat.id)
     bot.reply_to(
         message,
@@ -155,10 +153,11 @@ Botning barcha funksiyalarini ko'rish uchun /help tugmasini bosing.
 
 @bot.message_handler(commands=['results'])
 def handle_group_results(message):
-    try:
-        groups = Group.objects.filter(teacher__telegram_user_id=message.from_user.id)
-    except Exception as e:
-        print(e)
+    groups = Group.objects.filter(teacher__telegram_user_id=message.from_user.id)
+    if len(groups) is None:
+        bot.reply_to(
+            "Sizda biriktirilgan guruhlar mavjud emas!"
+        )
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     course_markup = CustomKeyboard(
         [group.name for group in groups], 
@@ -248,7 +247,6 @@ def handle_submit_group_results(message):
 
 @bot.message_handler(state=SumbitResultState.DATE.value)
 def handle_submit_group_results(message):
-    print(message.text)
     exam_grade['date'] = message.text
     bot.reply_to(
         message,
@@ -263,7 +261,6 @@ def handle_submit_group_results(message):
 @bot.message_handler(content_types=['photo'], state=SumbitResultState.IMAGE.value)
 def handle_submit_group_results(message):
     import requests
-    
     try:
         day, month, year  = exam_grade['date'].split('/')
         group = Group.objects.get(name=exam_grade['group'])
@@ -393,18 +390,16 @@ def handle_first_name(message):
 @bot.message_handler(state=RegistrationState.KNOWLEDGE_LEVEL.value)
 def handle_knowledge_level(message):
     user_info['KNOWLEDGE_LEVEL'] = message.text
-    existing_user = User.objects.filter(
+    user = User.objects.filter(
         telegram_username=message.from_user.username, 
         telegram_user_id=message.from_user.id
-        ).exists()
-    
-    if existing_user:
+        ).first()
+    print(user_info)
+    if user:
         try:
+            print("hello")
             course = Course.objects.get(name=user_info['COURSE'])
-            user = User.objects.get(
-                telegram_username=message.from_user.username,
-                telegram_user_id=message.from_user.id
-                )
+            print(course)
             Enrollment.objects.create(
                 user=user,
                 course=course,
@@ -416,12 +411,6 @@ def handle_knowledge_level(message):
                 phone=user.phone_number,
                 note=f"{user_info['COURSE']} - {user_info['KNOWLEDGE_LEVEL']}"
             )
-            
-            print(f"{user.first_name} {user.last_name}")
-            print(type(user.phone_number))
-            print(f"{user_info['COURSE']} - {user_info['KNOWLEDGE_LEVEL']}")
-            
-
             bot.reply_to(
             message,
             "Siz ro'yxatdan muvaffaqiyatli o'tdingiz!\

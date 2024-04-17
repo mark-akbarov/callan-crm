@@ -674,106 +674,21 @@
     <!-- teachers finished -->
     <!-- enroll -->
     <div class="form">
-      <div class="form_description">
-        <h1 class="title no-margin">Hoziroq kursga yoziling</h1>
+        <div class="form_description">
+        <h1 class="title no-margin">Hoziroq kurslarga yoziling</h1>
         <p class="info">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+          Achieve your dreams with CALLAN!
         </p>
       </div>
       <div id="enroll" class="form_input">
-        <div class="flex_box">
-          <div class="flex_item">
-            <p for="name_input">Ism Sharifingiz <span>*</span></p>
-            <input
-              id="fullName"
-              placeholder="Ism Familyani kiriting"
-              type="text"
-              required
-              autocomplete="name"
-            />
-          </div>
-          <div class="flex_item">
-            <p for="usr_date">Tug'ilgan oy/kun/yil <span>*</span></p>
-            <input
-              type="date"
-              required
-              name=""
-              id="dateofBirth"
-              autocomplete="bday"
-            />
-          </div>
-        </div>
-        <div class="flex_box">
-          <div class="flex_item">
-            <p for="usr_number">Telefon raqam <span>*</span></p>
-            <input
-              type="tel"
-              name=""
-              id="telNumber"
-              placeholder="+998"
-              autocomplete="tel-national"
-            />
-          </div>
-          <div class="flex_item">
-            <p for="select">Fanni tanlang <span>*</span></p>
-            <div class="dropdown">
-              <div class="select">
-                <div class="selected placeholder"></div>
-                <div class="caret"></div>
-              </div>
-              <ul class="menu">
-                <li class="dropdown-item" id="frontEnd" value="1">
-                  Front-end(IT)
-                </li>
-                <li class="dropdown-item" id="IELTS" value="2">IELTS</li>
-                <li class="dropdown-item" id="msOffice" value="3">
-                  Microsoft Office
-                </li>
-                <li class="dropdown-item" id="mobiloGraph" value="4">
-                  Mobilografiya
-                </li>
-                <li class="dropdown-item" id="graphicDesign" value="5">
-                  Grafik dizayn
-                </li>
-                <li class="dropdown-item" id="arabTili" value="6">Arab tili</li>
-                <li class="dropdown-item" id="flutter" value="7">
-                  Flutter(IT)
-                </li>
-                <li class="dropdown-item" id="bugalteriya" value="8">
-                  Buxgalteriya
-                </li>
-                <li class="dropdown-item" id="englishLang" value="9">
-                  Ingliz tili
-                </li>
-                <li class="dropdown-item" id="russianLang" value="10">
-                  Rus tili
-                </li>
-                <li class="dropdown-item" id="smm" value="11">SMM</li>
-                <li class="dropdown-item" id="xattot_Lik" value="12">
-                  Xattotlik
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+          <form action="" method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" id="submit" style="background-color: #ffbf00; color: #000000;">
+          </form>
 
-        <textarea
-          name=""
-          id="additionals"
-          cols=""
-          rows=""
-          placeholder="Qo'shimcha ma'lumotlar"
-        ></textarea>
-
-        <div class="send">
-          <button class="submit" type="submit" id="submit">Yuborish</button>
-          <button class="erase" type="reset" onclick="resetForm()">
-            O'chirish
-          </button>
-        </div>
       </div>
     </div>
-    <!-- enroll finished -->
 
     <!-- partners -->
     <div class="partners">
