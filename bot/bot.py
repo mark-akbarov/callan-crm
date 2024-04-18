@@ -154,10 +154,11 @@ Botning barcha funksiyalarini ko'rish uchun /help tugmasini bosing.
 @bot.message_handler(commands=['results'])
 def handle_group_results(message):
     groups = Group.objects.filter(teacher__telegram_user_id=message.from_user.id)
-    if len(groups) is None:
+    if len(groups) == 0:
         bot.reply_to(
             "Sizda biriktirilgan guruhlar mavjud emas!"
         )
+        return
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     course_markup = CustomKeyboard(
         [group.name for group in groups], 
