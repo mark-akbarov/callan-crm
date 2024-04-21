@@ -28,10 +28,10 @@ class User(AbstractUser):
     telegram_username = models.CharField(max_length=255, unique=True, null=True, blank=True)
     telegram_user_id = models.IntegerField(unique=True, null=True, blank=True)
     
-    REQUIRED_FIELDS = ['phone_number']
+    REQUIRED_FIELDS = ["phone_number"]
     
     def __str__(self):
-        return f"{self.first_name}"
+        return f"{self.first_name if self.first_name else 'Not Assigned'} - {self.type}"
 
     class Meta:
         ordering = ('-date_joined',)

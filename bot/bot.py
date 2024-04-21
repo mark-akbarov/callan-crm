@@ -153,35 +153,71 @@ Botning barcha funksiyalarini ko'rish uchun /help tugmasini bosing.
 
 @bot.message_handler(commands=['results'])
 def handle_group_results(message):
-    groups = Group.objects.filter(teacher__telegram_user_id=message.from_user.id)
-    if len(groups) == 0:
-        bot.reply_to(
-            "Sizda biriktirilgan guruhlar mavjud emas!"
+    # TODO: modify this whole section...
+    user = get_object_or_404(User, telegram_user_id=message.from_user.id)
+    if user.type == "O'qituvchi":
+        groups = Group.objects.filter(teacher__telegram_user_id=message.from_user.id)
+        print("yes" if groups is None else "no")
+        if len(groups) == 0:
+            bot.reply_to(
+                message,
+                "Sizda biriktirilgan guruhlar mavjud emas!"
+            )
+            return
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+        course_markup = CustomKeyboard(
+            [group.name for group in groups],
+            one_time_keyboard=True
         )
-        return
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    course_markup = CustomKeyboard(
-        [group.name for group in groups], 
-        one_time_keyboard=True
+        try:
+            bot.set_state(
+                message.from_user.id,
+                GetCourseResultsState.COURSE_NAME.value
+            )
+            bot.reply_to(
+                message,
+                'Guruh nomini tanlang.',
+                reply_markup=markup.add(*course_markup.create()),
+            )
+        except Exception as e:
+            print(f"Error at: {e}")
+    elif user.type == "O'quvchi":
+        groups = Group.objects.filter(students__telegram_user_id=message.from_user.id)
+        if len(groups) == 0:
+            bot.reply_to(
+                message,
+                "Siz hech qanday guruh a'zosi emassiz"
+            )
+            return
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+        course_markup = CustomKeyboard(
+            [group.name for group in groups],
+            one_time_keyboard=True
         )
-    try:
-        bot.set_state(
-            message.from_user.id,
-            GetCourseResultsState.COURSE_NAME.value
-        )
-        bot.reply_to(
-            message,
-            'Guruh nomini tanlang.',
-            reply_markup=markup.add(*course_markup.create()),
-        )
-    except Exception as e:
-        print(f"Error at: {e}")
+        try:
+            bot.set_state(
+                message.from_user.id,
+                GetCourseResultsState.COURSE_NAME.value
+            )
+            bot.reply_to(
+                message,
+                'Guruh nomini tanlang.',
+                reply_markup=markup.add(*course_markup.create()),
+            )
+        except Exception as e:
+            print(f"Error at: {e}")
 
 
 @bot.message_handler(state=GetCourseResultsState.COURSE_NAME.value)
 def handle_group_results(message):
     group = get_object_or_404(Group, name=message.text)
     results = ExamGrade.objects.filter(group=group).order_by('-created_at').last() # retrieve last test results
+    if results is None:
+        bot.reply_to(
+            message,
+            "Natijalar hali yuklanmagan..."
+        )
+        return
     try:
         bot.send_photo(
             message.chat.id,
@@ -192,6 +228,7 @@ Imtihon nomi: {results.name}
 Sana: {results.date}
 """
         )
+        bot.delete_state(message.from_user.id, message.chat.id)
     except Exception as e:
         print(f"Error at: {e}")
 
@@ -216,6 +253,7 @@ def handle_submit_group_results(message):
                 message.from_user.id,
                 state=SumbitResultState.GROUP.value
             )
+            bot.delete_state(message.from_user.id, message.chat.id)
         except Exception as e:
             print(f"Error at: {e}")
 
@@ -316,6 +354,7 @@ def handle_courses(message):
             message.from_user.id,
             state=GetGroupInfoState.GROUP_NAME.value
         )
+        bot.delete_state(message.from_user.id, message.chat.id)
     except Exception as e:
         print(f"Error at: {e}")
 
@@ -379,7 +418,13 @@ def handle_first_name(message):
     levels_buttons = CustomKeyboard([name.name for name in KnowledgeLevel])
     bot.reply_to(
         message,
-        "Fan yoki kurs bo'yicha bilim darajangizni belgilang: ",
+        """
+Fan yoki kurs bo'yicha bilim darajangizni belgilang:
+
+BEGINNER - 0-1 yillik tajriba
+ELEMENTARY - 1-3 yillik tajriba
+INTERMEDIATE - 3+ yillik tajriba
+""",
         reply_markup=markup.add(*levels_buttons.create())
     )
     bot.set_state(
@@ -480,6 +525,6 @@ def handle_phone_number(message):
         f"Siz ro'yxatdan muvaffaqiyatli o'tdingiz!\
             \nSiz bilan 1-2 kun ichida administratorlarimiz aloqaga chiqishadi."
         )
-        
+        bot.delete_state(message.from_user.id, message.chat.id)
     except Exception as e:
         print(f"Error when creating object: {e}")

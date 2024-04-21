@@ -19,4 +19,4 @@ def index(request):
             return redirect("home:index")
     else:
         form = UserForm()
-    return render(request, "home/base.html", context={"title": "test title", "form": form})
+    return render(request, "home/index.html", context={"title": "test title", "form": form})

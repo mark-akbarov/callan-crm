@@ -1,12 +1,11 @@
 from django.db import models
-
 from core.utils.base_model import BaseModel
 
 
 class Group(BaseModel):
     name = models.CharField(max_length=255, unique=True)
-    teacher = models.ForeignKey('account.User', on_delete=models.CASCADE, null=True)
-    
+    teacher = models.ForeignKey("account.User", on_delete=models.CASCADE, null=True)
+    students = models.ManyToManyField("account.User", related_name="course_groups")
     def __str__(self) -> str:
         return self.name
 
