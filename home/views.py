@@ -6,18 +6,15 @@ from .forms import UserForm
 def index(request):
     if request.method == 'POST':
         form = UserForm(data=request.POST)
-        print(form)
         if form.is_valid():
-            print(form.cleaned_data)
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             phone_number = form.cleaned_data['phone_number']
             course_name = form.cleaned_data['courses']
-            print(first_name, last_name, phone_number, course_name)
             create_lead(
                 name=f"{first_name} {last_name}",
                 phone=phone_number,
-                note=course_name
+                note=course_name.name
             )
             return redirect("home:index")
     else:
@@ -30,7 +27,23 @@ def about(request):
 
 
 def courses(request):
-    return render(request, "home/courses.html")
+    if request.method == 'POST':
+        form = UserForm(data=request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            phone_number = form.cleaned_data['phone_number']
+            course_name = form.cleaned_data['courses']
+
+            create_lead(
+                name=f"{first_name} {last_name}",
+                phone=phone_number,
+                note=course_name.name
+            )
+            return redirect("home:index")
+    else:
+        form = UserForm()
+    return render(request, "home/courses.html", context={"title": "test title", "form": form})
 
 
 def team(request):

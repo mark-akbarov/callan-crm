@@ -297,60 +297,15 @@
           </div>
         </div>
         <div id="enroll" class="form-container">
-          <form id="contactForm" action="#" method="post">
-            <div class="form-group">
-              <label for="name" class="label">*Ism:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="input-field"
-                required
-                placeholder="Ismingizni kiriting"
-              />
+              <form id="contactForm" action="/" method="post">
+                  <div class="form-group">
+                  {% csrf_token %}
+                   {{ form.as_p }}
+                  </div>
+                  <input type="submit" class="blog-slider__button" value="Yuborish">
+
+              </form>
             </div>
-            <div class="form-group">
-              <label for="surname" class="label">*Familya:</label>
-              <input
-                type="text"
-                id="surname"
-                name="surname"
-                class="input-field"
-                required
-                placeholder="Familyangizni kiriting"
-              />
-            </div>
-            <div class="form-group">
-              <label for="tel" class="label">*Telefon Raqami:</label>
-              <input
-                type="tel"
-                id="tel"
-                name="tel"
-                class="input-field"
-                required
-                placeholder="+998"
-              />
-            </div>
-            <div class="form-group">
-              <label for="subject" class="label">* Fan:</label>
-              <select id="subject" name="subject" class="select-field" required>
-                <option value="" disabled selected>
-                  <h1>Fanni tanlang</h1>
-                </option>
-                <option value="General English">General English</option>
-                <option value="IELTS">IELTS</option>
-                <option value="Russian">Rus tili</option>
-                <option value="Arabic">Arab Tili</option>
-                <option value="Kompyuter Savodxonligi">
-                  Kompyuter Savodxonligi
-                </option>
-                <option value="Mobil Dasturlash">Mobil Dasturlash</option>
-                <option value="Veb Dasturlash">Veb Dasturlash</option>
-              </select>
-            </div>
-            <button type="submit" class="btn_submit">Yuborish</button>
-          </form>
-        </div>
         <!-- Popup message -->
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="popup">

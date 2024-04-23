@@ -39,6 +39,7 @@ def create_lead(name, phone, note, branch_ids=1, legal_type=1, color=blue, is_st
         headers={"X-ALFACRM-TOKEN": token}
         )
     if res.status_code == 200:
+        print(res.json())
         print("success")
     else:
         return res.content

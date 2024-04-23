@@ -416,12 +416,12 @@
           <h1>Online ro'yxatdan o'ting</h1>
         </div>
           <div id="enroll" class="form-container">
-              <form id="contactForm" action="{% url 'home:index' %}" method="post">
+              <form id="contactForm" action="/" method="post">
                   <div class="form-group">
                   {% csrf_token %}
                    {{ form.as_p }}
                   </div>
-                  <input type="submit" id="submit">
+                  <input type="submit" class="blog-slider__button" value="Save">
 
               </form>
             </div>
