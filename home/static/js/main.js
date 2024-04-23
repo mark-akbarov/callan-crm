@@ -1,63 +1,57 @@
-const dropdowns = document.querySelectorAll(".dropdown");
+const form = document.getElementById("contactForm");
 
-dropdowns.forEach((dropdown) => {
-  const select = document.querySelector(".select");
-  const caret = document.querySelector(".caret");
-  const menu = document.querySelector(".menu");
-  const options = document.querySelectorAll(".menu li");
-  const selected = document.querySelector(".selected");
-  select.addEventListener("click", () => {
-    caret.classList.toggle("caret-rotate");
-    menu.classList.toggle("menu-open");
-  });
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent form submission
+  const inputs = document.querySelectorAll(".input-field"); // Get all input fields
 
-  options.forEach((option) => {
-    option.addEventListener("click", () => {
-      selected.classList.remove("placeholder");
-      selected.innerText = option.innerText;
-      caret.classList.remove("caret-rotate");
-      menu.classList.remove("menu-open");
-      options.forEach((option) => option.classList.remove("active"));
-      option.classList.add("active");
-    });
-  });
-});
-document.addEventListener("DOMContentLoaded", function () {
-  var links = document.querySelectorAll(".links a");
+  let isFormValid = true; // Assume form is valid initially
 
-  links.forEach(function (link) {
-    link.addEventListener("click", function () {
-      // Remove active class from all links
-      links.forEach(function (otherLink) {
-        otherLink.classList.remove("active");
-      });
-
-      // Add active class to the clicked link
-      this.classList.add("active");
-    });
-  });
-});
-function resetForm() {
-  // Get all form elements and reset their values
-  var formElements = document
-    .getElementById("enroll")
-    .querySelectorAll("input, textarea, select");
-  formElements.forEach(function (element) {
-    // Check if it's a dropdown, reset the selected index to the placeholder
-    if (element.tagName.toLowerCase() === "select") {
-      element.selectedIndex = 0;
-    } else {
-      // For other elements, reset their values
-      element.value = "";
+  inputs.forEach(function (input) {
+    if (input.value.trim() === "") {
+      // Check if any input field is empty
+      isFormValid = false; // Mark form as invalid
     }
   });
+
+  if (isFormValid) {
+    showPopup(); // Show popup message if form is valid
+  } else {
+    alert("Please fill out all required fields."); // Show an alert if any field is empty
+  }
+});
+
+// Function to show popup message and clear input fields
+function showPopup() {
+  const overlay = document.getElementById("overlay");
+  const popup = document.getElementById("popup");
+  overlay.style.display = "block";
+  popup.style.display = "block";
+
+  // clear input fields after a delay (e.g., 2 seconds)
+  setTimeout(function () {
+    const inputFields = document.querySelectorAll(".input-field");
+    inputFields.forEach(function (input) {
+      input.value = "";
+    });
+  }, 2000);
 }
+
+// Function to hide popup message
+function hidePopup() {
+  const overlay = document.getElementById("overlay");
+  const popup = document.getElementById("popup");
+  overlay.style.display = "none";
+  popup.style.display = "none";
+}
+// !partners carousel
 const marquee = document.querySelector(".marquee-content");
 
 // Reset the marquee when it reaches the end
 marquee.addEventListener("animationiteration", () => {
+  // Increase the speed by reducing the duration of the animation
   marquee.style.animation = "none";
   setTimeout(() => {
-    marquee.style.animation = "marquee 20s linear infinite"; // Adjust the duration and timing function as needed
+    marquee.style.animation = "marquee 5s linear infinite"; // Adjust the duration (5s in this example)
   }, 0);
 });
+// !fetch about.html

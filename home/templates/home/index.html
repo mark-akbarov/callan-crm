@@ -5,899 +5,604 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Callan Education</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo-gold.png' %}" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@6.7.0/swiper-bundle.min.css"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <link rel="stylesheet" href="{% static 'css/glower.css' %}" />
+    <script defer src="{% static 'js/nav.js' %}"></script>
+    <script defer src="{% static 'js/hero.js' %}"></script>
+    <script defer src="{% static 'js/courses.js' %}"></script>
+    <script defer src="{% static 'js/result.js' %}"></script>
+    <script defer src="{% static 'js/main.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/hero.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/about.css' %}" />
     <link rel="stylesheet" href="{% static 'css/courses.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link rel="stylesheet" href="{% static  'css/teachers.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/result.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
   </head>
   <body>
-    <div class="navbar" id="navbar">
-      <div class="btn-group fullscreen-dropdown">
-        <button
-          type="button"
-          class="btn dropdown-toggle"
-          data-bs-toggle="dropdown"
-          data-bs-display="static"
-          aria-expanded="false"
-        >
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-lg-start">
-          <li>
-            <a class="dropdown-item no-margin" href="#home">bosh sahifa</a>
-          </li>
-          <li>
-            <a class="dropdown-item no-margin" href="#about">biz haqimizda</a>
-          </li>
-          <li>
-            <a class="dropdown-item no-margin" href="#courses">kurslar</a>
-          </li>
-          <li>
-            <a class="dropdown-item no-margin" href="#teachers"
-              >o'qituvchilar</a
-            >
-          </li>
-
-          <li><hr class="dropdown-divider" /></li>
-          <li>
-            <div class="glower">
-              <a href="#enroll" class="dropdown-item no-margin enroll"
-                >Uqishni boshlash</a
-              >
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="logo">
-        <img class="logo_img" src="{%  static 'img/logo.png' %}" alt="" />
-        <h1 class="no-margin">Callan Education</h1>
-      </div>
-      <div class="links">
-        <a href="#home">bosh sahifa</a>
-        <a href="#about">biz haqimizda</a>
-        <a href="#courses">kurslar</a>
-        <a href="#teachers">o'qituvchilar</a>
-        <div class="glower">
-          <a href="#enroll " style="background-color: #ffbf00" class="enroll"
-            >o'qishni boshlash</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <!--hero section-->
-    <div id="home" class="hero">
-      <div class="bdt-timeline-container">
-        <div class="upk-salf-slider-wrapper">
-          <div class="swiper-container mySwiper2">
-            <div class="swiper-wrapper">
-              <div class="upk-salf-item swiper-slide">
-                <div class="upk-salf-image-wrap">
-                  <img
-                    class="upk-xanc-img"
-                    src="{%  static 'img/callan_outside1.webp' %}"
-                  />
-                </div>
-                <div class="upk-salf-content-wrap">
-                  <h3
-                    class="upk-salf-title"
-                    data-swiper-parallax-y="-150"
-                    data-swiper-parallax-duration="1200"
-                  >
-                    Biz bilan yuqori natijalarga erishing!
-                  </h3>
-                  <div
-                    class="upk-salf-desc"
-                    data-swiper-parallax-y="-200"
-                    data-swiper-parallax-duration="1400"
-                  >
-                    bizdagi sog'lom muhit va bilimli o'qituvchilar bilan
-                    mustahkam bilim olishingiz mumkin
-                  </div>
-                  <div
-                    class="upk-salf-button"
-                    data-swiper-parallax-y="-300"
-                    data-swiper-parallax-duration="1500"
-                  >
-                    <a class="link link--arrowed" href="#"
-                      >davom etish
-                      <svg
-                        class="arrow-icon"
-                        xmlns=""
-                        width="28"
-                        height="28"
-                        viewBox="0 0 32 32"
-                      >
-                        <g
-                          fill="none"
-                          stroke="#ff215a"
-                          stroke-width="1.5"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="10"
-                        >
-                          <circle
-                            class="arrow-icon--circle"
-                            cx="16"
-                            cy="16"
-                            r="15.12"
-                          ></circle>
-                          <path
-                            class="arrow-icon--arrow"
-                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
-                          ></path>
-                        </g>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="upk-salf-item swiper-slide">
-                <div class="upk-salf-image-wrap">
-                  <img
-                    class="upk-xanc-img"
-                    src="{%  static 'img/callan_family.png' %}"
-                  />
-                </div>
-                <div class="upk-salf-content-wrap">
-                  <h3
-                    class="upk-salf-title"
-                    data-swiper-parallax-y="-150"
-                    data-swiper-parallax-duration="1200"
-                  >
-                    tajribali va bilimli o'qituvchilar bilan
-                  </h3>
-                  <div
-                    class="upk-salf-desc"
-                    data-swiper-parallax-y="-200"
-                    data-swiper-parallax-duration="1400"
-                  >
-                    siz bilan o'z sohasida yetarli tajriba va bilimga ega
-                    mentorlar shug'ullanishadi
-                  </div>
-
-                  <div
-                    class="upk-salf-button"
-                    data-swiper-parallax-y="-300"
-                    data-swiper-parallax-duration="1500"
-                  >
-                    <a class="link link--arrowed" href="#"
-                      >davom etish
-                      <svg
-                        class="arrow-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="28"
-                        height="28"
-                        viewBox="0 0 32 32"
-                      >
-                        <g
-                          fill="none"
-                          stroke="#ff215a"
-                          stroke-width="1.5"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="10"
-                        >
-                          <circle
-                            class="arrow-icon--circle"
-                            cx="16"
-                            cy="16"
-                            r="15.12"
-                          ></circle>
-                          <path
-                            class="arrow-icon--arrow"
-                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
-                          ></path>
-                        </g>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="upk-salf-item swiper-slide">
-                <div class="upk-salf-image-wrap">
-                  <img class="upk-xanc-img" src="{% static 'img/callan_inside.jpg' %}" />
-                </div>
-                <div class="upk-salf-content-wrap">
-                  <h3
-                    class="upk-salf-title"
-                    data-swiper-parallax-y="-150"
-                    data-swiper-parallax-duration="1200"
-                  >
-                    qulay narxdagi o'quv kurslari
-                  </h3>
-                  <div
-                    class="upk-salf-desc"
-                    data-swiper-parallax-y="-200"
-                    data-swiper-parallax-duration="1400"
-                  >
-                    to'lovlarni xohlagan usulda to'lang, birinchi darsimiz
-                    teking
-                  </div>
-
-                  <div
-                    class="upk-salf-button"
-                    data-swiper-parallax-y="-300"
-                    data-swiper-parallax-duration="1500"
-                  >
-                    <a class="link link--arrowed" href="#"
-                      >read more
-                      <svg
-                        class="arrow-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="28"
-                        height="28"
-                        viewBox="0 0 32 32"
-                      >
-                        <g
-                          fill="none"
-                          stroke="#ff215a"
-                          stroke-width="1.5"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="10"
-                        >
-                          <circle
-                            class="arrow-icon--circle"
-                            cx="16"
-                            cy="16"
-                            r="15.12"
-                          ></circle>
-                          <path
-                            class="arrow-icon--arrow"
-                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
-                          ></path>
-                        </g>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="upk-salf-item swiper-slide">
-                <div class="upk-salf-image-wrap">
-                  <img class="upk-xanc-img" src="{% static 'img/cources.jpg' %}" />
-                </div>
-                <div class="upk-salf-content-wrap">
-                  <h3
-                    class="upk-salf-title"
-                    data-swiper-parallax-y="-150"
-                    data-swiper-parallax-duration="1200"
-                  >
-                    onlayn ro'yxatdan o'ting
-                  </h3>
-                  <div
-                    class="upk-salf-desc"
-                    data-swiper-parallax-y="-200"
-                    data-swiper-parallax-duration="1400"
-                  >
-                    hozir ro'yxatda o'ting ertadan darslarga qatnashing
-                  </div>
-
-                  <div
-                    class="upk-salf-button"
-                    data-swiper-parallax-y="-300"
-                    data-swiper-parallax-duration="1500"
-                  >
-                    <a class="link link--arrowed" href="#"
-                      >davom etish
-                      <svg
-                        class="arrow-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="28"
-                        height="28"
-                        viewBox="0 0 32 32"
-                      >
-                        <g
-                          fill="none"
-                          stroke="#ff215a"
-                          stroke-width="1.5"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="10"
-                        >
-                          <circle
-                            class="arrow-icon--circle"
-                            cx="16"
-                            cy="16"
-                            r="15.12"
-                          ></circle>
-                          <path
-                            class="arrow-icon--arrow"
-                            d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
-                          ></path>
-                        </g>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="upk-page-scroll">
-            <a class="arrow-up">
-              <div class="long-arrow-left"></div>
-              <span class="arrow-slide"></span>
+    <div class="container_ m-0 p-0">
+      <div class="navigation">
+        <div class="nav-container">
+          <div class="brand">
+            <a href="{% url 'home:index' %}" class="flexbox-center"><img class="logo" src="{% static 'images/logo-gold.png' %}" alt="logo" />
+                Callan Education
             </a>
           </div>
-          <div class="upk-salf-nav-pag-wrap">
-            <div class="upk-salf-navigation">
-              <div class="upk-button-prev upk-n-p">
-                <a class="link link--arrowed" href="#">
-                  <svg
-                    class="arrow-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    viewBox="0 0 32 32"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#ff215a"
-                      stroke-width="1.5"
-                      stroke-linejoin="round"
-                      stroke-miterlimit="10"
+          <nav>
+            <div class="nav-mobile">
+              <a id="nav-toggle" href="#!"><span></span></a>
+            </div>
+
+            <ul class="nav-list">
+              <li><a href="{% url 'home:index' %}">Bosh sahifa</a></li>
+              <li><a href="{% url 'home:about' %}">Biz haqimizda</a></li>
+              <li>
+                <a href="{% url 'home:courses' %}">Kurslar</a>
+                <ul class="nav-dropdown white">
+                  <li><a href="{% url 'home:courses' %}#regular">Odatiy</a></li>
+                  <li><a href="{% url 'home:courses' %}#induvidual">Intensiv</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'home:team' %}">Natijalar</a></li>
+              <li>
+                <a class="highlited" href="#registration">Kursga yozilish</a>
+              </li>
+              <li>
+                <a class="highlited" href="tel:+998971291111"
+                  ><i class="fa-solid fa-phone"></i> (97) 129 11 11</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- !end of the navbar -->
+      <section id="home" class="hero-slider hero-style">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="slide-inner slide-bg-image" data-background="{% static 'images/callan_inside0.png' %}">
+                <div class="ccontainer">
+                  <div data-swiper-parallax="300" class="slide-title">
+                    <h2>Biz bilan yuqori cho'qqilarni zabt eting!</h2>
+                  </div>
+                  <div data-swiper-parallax="400" class="slide-text">
+                    <p></p>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div data-swiper-parallax="500" class="slide-btns">
+                    <a href="#registration" class="theme-btn-s2">Ro'yxatdan o'tish</a>
+                    <a href="#about" class="theme-btn-s3"><i class="fas fa-chevron-circle-right"></i> batafsil</a>
+                  </div>
+                </div>
+              </div>
+              <!-- end slide-inner -->
+            </div>
+            <!-- end swiper-slide -->
+
+            <div class="swiper-slide">
+              <div
+                class="slide-inner slide-bg-image"
+                data-background="{% static 'images/callan_family.jpg' %}"
+              >
+                <div class="ccontainer">
+                  <div data-swiper-parallax="300" class="slide-title">
+                    <h2>Ahil jamoa va malakali o'qituvchilar</h2>
+                  </div>
+                  <div data-swiper-parallax="400" class="slide-text">
+                    <p></p>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div data-swiper-parallax="500" class="slide-btns">
+                    <a href="#registration" class="theme-btn-s2"
+                      >Ro'yxatdan o'tish</a
                     >
-                      <circle
-                        class="arrow-icon--circle"
-                        cx="16"
-                        cy="16"
-                        r="15.12"
-                      ></circle>
-                      <path
-                        class="arrow-icon--arrow"
-                        d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-              <div class="upk-button-next upk-n-p">
-                <a class="link link--arrowed" href="#">
-                  <svg
-                    class="arrow-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    viewBox="0 0 32 32"
-                  >
-                    <g
-                      fill="none"
-                      stroke="#ff215a"
-                      stroke-width="1.5"
-                      stroke-linejoin="round"
-                      stroke-miterlimit="10"
-                    >
-                      <circle
-                        class="arrow-icon--circle"
-                        cx="16"
-                        cy="16"
-                        r="15.12"
-                      ></circle>
-                      <path
-                        class="arrow-icon--arrow"
-                        d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div class="upk-salf-pagi-wrap">
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- hero ends -->
-
-    <!-- about us -->
-    <div class="about">
-      <div id="about" class="text_box">
-        <p class="about_info info">
-          <span>Callan Education</span> Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Facilis fugiat fugit iusto rerum eos deleniti eius?
-          Fuga vero nam explicabo.
-        </p>
-        <button class="about_more more">
-          Batafsil <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
-      <div class="img_box">
-        <img src="{% static 'img/callan_outside.webp' %}" alt="callan edu" />
-      </div>
-    </div>
-    <!-- about finished -->
-    <!-- courses -->
-    <div class="cources" id="courses">
-      <div class="slider">
-        <div class="section_info">
-          <h1 class="no-margin courses_title title">Kurslar</h1>
-          <p class="courses_info no-margin">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt,
-            consequatur!
-          </p>
-        </div>
-
-        <div class="slider_inner">
-          <button id="prev" class="btn btn-scroll">
-            <i class="las la-angle-left"></i>
-          </button>
-          <div class="card-content">
-            <!-- Card 1 -->
-            <div class="card">
-              <!-- here is order -->
-              <h4>1</h4>
-              <div class="card-img">
-                <!-- here is image -->
-                <img src="{% static 'img/english.png' %}" alt="" />
-              </div>
-              <div class="card-text">
-                <!-- here is title of course card -->
-                <h2>Ingliz Tili</h2>
-                <!-- here is description of course -->
-                <p>
-                  I show you how to make a card group easily and very functional
-                  with the use of flexbox and its magic and JavaScript.
-                </p>
-                <p></p>
-              </div>
-            </div>
-            <!-- Card End -->
-
-            <!-- Card 2-->
-            <div class="card">
-              <h4>2</h4>
-              <div class="card-img">
-                <img src="{% static 'img/russian.jpg' %}" alt="" />
-                <!-- <img
-                class="blur"
-                src="https://photo-cdn.icons8.com/assets/sata/editor/object/456/1e8ed695-cab8-45b2-b09c-153a7970f9f3.png"
-                alt=""
-              /> -->
-              </div>
-              <div class="card-text">
-                <h2>Rus Tili</h2>
-                <p>
-                  I show you how to make a card group easily and very functional
-                  with the use of flexbox and its magic and JavaScript.
-                </p>
-                <p></p>
-              </div>
-            </div>
-            <!-- Card End -->
-
-            <!-- Card 3-->
-            <div class="card">
-              <h4>3</h4>
-
-              <div class="card-img">
-                <img src="{% static 'img/arabic.jpg' %}" alt="" />
-              </div>
-              <div class="card-text">
-                <h2>Arab Tili</h2>
-                <p>
-                  I show you how to make a card group easily and very functional
-                  with the use of flexbox and its magic and JavaScript.
-                </p>
-                <p></p>
-              </div>
-            </div>
-            <!-- Card End -->
-
-            <!-- Card 4 -->
-            <div class="card">
-              <h4>4</h4>
-
-              <div class="card-img">
-                <img src="{% static 'img/IT.jpg' %}" alt="" />
-              </div>
-              <div class="card-text">
-                <h2>IT Kurslari</h2>
-                <p>
-                  I show you how to make a card group easily and very functional
-                  with the use of flexbox and its magic and JavaScript.
-                </p>
-                <p></p>
-              </div>
-            </div>
-            <!-- Card End -->
-
-            <!-- Card 5-->
-            <div id="down" class="card">
-              <h4>5</h4>
-
-              <div class="card-img">
-                <img src="{% static 'img/xattotlik.jpg' %}" alt="" />
-              </div>
-              <div class="card-text">
-                <h2>Xattotlik Kurslari</h2>
-                <p>
-                  I show you how to make a card group easily and very functional
-                  with the use of flexbox and its magic and JavaScript.
-                </p>
-                <p></p>
-              </div>
-            </div>
-            <!-- Card End -->
-          </div>
-          <button id="next" class="btn btn-scroll">
-            <i class="las la-angle-right"></i>
-          </button>
-        </div>
-        <button class="courses_more more">
-          <a href="courses.html" target="_blank"
-            >Batafsil <i class="fa-solid fa-arrow-right"></i
-          ></a>
-        </button>
-      </div>
-    </div>
-    <!-- courses finished  -->
-    <!-- teachers  -->
-    <div class="teachers" id="teachers">
-      <div class="teacher_grid">
-        <div class="section_info">
-          <h1 class="no-margin teachers_title">O'qituvchilar</h1>
-          <p class="no-margin teachers_info">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt,
-            consequatur!
-          </p>
-        </div>
-        <div class="teacher_card">
-          <div class="card_item">
-            <div class="card_img">
-              <img src="{% static 'img/english.png' %}" alt="" />
-            </div>
-            <div class="card_body">
-              <h1 class="name">Ism Familya</h1>
-              <h3 class="field">Ingliz tili</h3>
-
-              <p class="natija">IELTS: 7.5</p>
-              <p class="tajriba">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestias!
-              </p>
-            </div>
-          </div>
-          <div class="card_item">
-            <div class="card_img">
-              <img src="{% static 'img/english.png' %}" alt="" />
-            </div>
-            <div class="card_body">
-              <h1 class="name">Ism Familya</h1>
-              <h3 class="field">Rus Tili</h3>
-
-              <p class="natija">IELTS: 7.5</p>
-              <p class="tajriba">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestias!
-              </p>
-            </div>
-          </div>
-          <div class="card_item">
-            <div class="card_img">
-              <img src="{% static 'img/english.png' %}" alt="" />
-            </div>
-            <div class="card_body">
-              <h1 class="name">Ism Familya</h1>
-              <h3 class="field">Arab Tili</h3>
-
-              <p class="natija">IELTS: 7.5</p>
-              <p class="tajriba">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestias!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="teacher_card_row">
-          <div class="card_item">
-            <div class="card_img">
-              <img src="{% static 'img/english.png' %}" alt="" />
-            </div>
-            <div class="card_body">
-              <h1 class="name">Ism Familya</h1>
-              <h3 class="field">Xattotlik</h3>
-
-              <p class="natija">Tajriba: 2 yildan ortiq</p>
-              <p class="tajriba">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestias!
-              </p>
-            </div>
-          </div>
-          <div class="card_item">
-            <div class="card_img">
-              <img src="{% static 'img/english.png' %}" alt="" />
-            </div>
-            <div class="card_body">
-              <h1 class="name">Ism Familya</h1>
-              <h3 class="field">IT, dasturlash</h3>
-
-              <p class="natija">Tajriba: 2 yildan ortiq</p>
-              <p class="tajriba">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestias!
-              </p>
-            </div>
-          </div>
-        </div>
-        <button class="teachers_more more">
-          Batafsil <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
-    </div>
-    <!-- teachers finished -->
-    <!-- enroll -->
-    <div class="form">
-        <div class="form_description">
-        <h1 class="title no-margin">Hoziroq kurslarga yoziling</h1>
-        <p class="info">
-          Achieve your dreams with CALLAN!
-        </p>
-      </div>
-      <div id="enroll" class="form_input">
-          <form action="" method="post">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <input type="submit" id="submit" style="background-color: #ffbf00; color: #000000;">
-          </form>
-
-      </div>
-    </div>
-
-    <!-- partners -->
-    <div class="partners">
-      <h1 class="title">Hamkorlarimiz</h1>
-      <div class="marquee-container">
-        <marquee
-          class="marquee-content"
-          behavior="scroll"
-          direction="left"
-          scrollamount="5"
-        >
-          <!-- Your content goes here -->
-          <img class="lsbu" src="{% static 'img/LSBU2020logo.png' %}" alt="" />
-          <img
-            class="reading"
-            src="{% static 'img/University-of-Reading-Logo-removebg-preview.png' %}"
-            alt=""
-          />
-          <img
-            class="yilogo"
-            src="{% static 'img/dQxFoFhnWm6TzmEg28EwAHcUM9mE5HWQ_medium-removebg-preview.png' %}"
-            alt=""
-          />
-          <img
-            class="east"
-            src="{% static 'img/university-of-east-london8981-removebg-preview.png' %}"
-            alt=""
-          />
-          <img
-            class="oieg"
-            src="{% static 'img/OIEG-1-removebg-preview.png' %}"
-            alt=""
-          />
-          <!-- Repeat your content as needed -->
-        </marquee>
-      </div>
-    </div>
-    <!-- partners finished -->
-
-    <!-- footer -->
-    <footer>
-      <!-- Remove the container if you want to extend the Footer to full width. -->
-      <div class="container my-5">
-        <!-- Footer -->
-        <footer
-          class="text-center text-lg-start text-white"
-          style="background-color: #45526e"
-        >
-          <!-- Grid container -->
-          <div class="container p-4 pb-0">
-            <!-- Section: Links -->
-            <section class="">
-              <!--Grid row-->
-              <div class="row">
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                  <h6 class="text-uppercase mb-4 font-weight-bold">
-                    Callan Education
-                  </h6>
-                  <p>
-                    Callan Education bilan o'z maqsadlaringizni amalga oshiring
-                  </p>
-                </div>
-                <!-- Grid column -->
-
-                <hr class="w-100 clearfix d-md-none" />
-
-                <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                  <h6 class="text-uppercase mb-4 font-weight-bold">batafsil</h6>
-                  <p>
-                    <a class="text-white">statistika</a>
-                  </p>
-                  <p>
-                    <a class="text-white">bizning hamkorlar</a>
-                  </p>
-                  <p>
-                    <a class="text-white">jamoaga qo'shilish</a>
-                  </p>
-                  <p>
-                    <a class="text-white">sertifikatlar</a>
-                  </p>
-                </div>
-                <!-- Grid column -->
-
-                <hr class="w-100 clearfix d-md-none" />
-
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                  <h6 class="text-uppercase mb-4 font-weight-bold">
-                    kerakli linklar
-                  </h6>
-                  <p>
-                    <a class="text-white">ko'p soralgan savollar</a>
-                  </p>
-                  <p>
-                    <a class="text-white">natijalar</a>
-                  </p>
-                  <p>
-                    <a class="text-white">narxlar</a>
-                  </p>
-                  <p>
-                    <a class="text-white">yordam</a>
-                  </p>
-                </div>
-
-                <!-- Grid column -->
-                <hr class="w-100 clearfix d-md-none" />
-
-                <!-- Grid column -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                  <h6 class="text-uppercase mb-4 font-weight-bold">
-                    bog'lanish
-                  </h6>
-                  <p><i class="fas fa-home mr-3"></i> Qo'qon, Hamza, 12-uy</p>
-                  <p>
-                    <i class="fas fa-envelope mr-3"></i>
-                    callanedu@gmail.com
-                  </p>
-                  <p><i class="fas fa-phone mr-3"></i> (91) 150 00 16</p>
-                  <p><i class="fas fa-phone mr-3"></i> (97) 629 11 11</p>
-                </div>
-                <!-- Grid column -->
-              </div>
-              <!--Grid row-->
-            </section>
-            <!-- Section: Links -->
-
-            <hr class="my-3" />
-
-            <!-- Section: Copyright -->
-            <section class="p-3 pt-0">
-              <div class="row d-flex align-items-center">
-                <!-- Grid column -->
-                <div class="col-md-7 col-lg-8 text-center text-md-start">
-                  <!-- Copyright -->
-                  <div class="p-3">
-                    © 2024:
-                    <a
-                      class="text-white"
-                      href="https://new.birdarcha.uz/document/b0fcf782-b48b-4add-9326-7da6b4cadde0"
-                      >Callan Education Group</a
+                    <a href="#about" class="theme-btn-s3"
+                      ><i class="fas fa-chevron-circle-right"></i>batafsil</a
                     >
                   </div>
-                  <!-- Copyright -->
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div
-                  class="social_links col-md-5 col-lg-4 ml-lg-0 text-center text-md-end"
-                >
-                  <!-- Facebook -->
-                  <a
-                    class="btn btn-outline-light btn-floating m-1"
-                    class="text-white"
-                    role="button"
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-
-                  <!-- Twitter -->
-                  <a
-                    class="btn btn-outline-light btn-floating m-1"
-                    class="text-white"
-                    role="button"
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-
-                  <!-- Google -->
-                  <a
-                    class="btn btn-outline-light btn-floating m-1"
-                    class="text-white"
-                    role="button"
-                    ><i class="fab fa-google"></i
-                  ></a>
-
-                  <!-- Instagram -->
-                  <a
-                    class="btn btn-outline-light btn-floating m-1"
-                    class="text-white"
-                    role="button"
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-                </div>
-                <!-- Grid column -->
               </div>
-            </section>
-            <!-- Section: Copyright -->
+              <!-- end slide-inner -->
+            </div>
+            <!-- end swiper-slide -->
           </div>
-          <!-- Grid container -->
-        </footer>
-        <!-- Footer -->
-      </div>
-      <!-- End of .container -->
-    </footer>
-    <!-- footer finished -->
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/hero.js' %}"></script>
-    <script src="{% static 'js/courses.js' %}"></script>
-    <!-- <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.7.0/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+          <!-- end swiper-wrapper -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+          <!-- swipper controls -->
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </section>
+      <!-- !end of hero slider -->
+      <section class="transition_ section_all bg-light" id="about">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="section_title_all text-center">
+                <h3 class="font-weight-bold second_font">
+                  Callan Educationga
+                  <span class="text-custom">Xush kelibsiz</span>
+                </h3>
+                <p class="section_subtitle mx-auto text-muted">
+                  Ikki yildan ortiq vaqt davomida o'quvchilarga Arab tili, Rus
+                  tili, Ingliz tili va Dasturlashdan ilm berib kelmoqdamiz
+                  <br />
+                </p>
+                <div class="">
+                  <i class=""></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row vertical_content_manage mt-5">
+            <div class="col-lg-6">
+              <div class="about_header_main mt-3">
+                <div class="about_icon_box">
+                  <p class="text_custom font-weight-bold">Biz bilan...</p>
+                </div>
+                <h4 class="about_heading text-capitalize font-weight-bold mt-4">
+                  Chet tili sertifikatlarini oling
+                </h4>
+                <p class="mt-3">
+                  O'zbekiston va Chet el universitetlariga qabul qilinish uchun
+                  sizda albatta chet tili sertifikati bo'lishi zarur. Bizning
+                  bilimli ustozlarimiz bunda sizga yo'l ko'rsatishadi!
+                </p>
+
+                <p class="mt-3">
+                  Qolaversa "Callan Education" va "Yoshlar Ittifoqi" bilan
+                  birgalikdagi "Kelajak Kasblari" loyihasida ishtirok eting va 6
+                  oy davomida mutlaqo davlat granti asosida markazimizdagi
+                  Istalgan yo'nalishda Tekinga o'qing!
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="img_about mt-3">
+                <img
+                  src="{% static 'images/callan_outside.webp' %}"
+                  alt=""
+                  class="img-fluid mx-auto d-block"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-lg-4">
+              <div class="about_content_box_all mt-3">
+                <div class="about_detail text-center">
+                  <div class="about_icon">
+                    <i class="fas fa-pencil-alt"></i>
+                  </div>
+                  <h5 class="text-dark text-capitalize mt-3 font-weight-bold">
+                    qo'llab quvvatlash
+                  </h5>
+                  <p class="edu_desc mt-3 mb-0 text-muted">
+                    Yaxshi jihozlangan darsxona va <br />
+                    yordamchi o'qituvchilar bilan
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="about_content_box_all mt-3">
+                <div class="about_detail text-center">
+                  <div class="about_icon">
+                    <i class="fa-solid fa-shield"></i>
+                  </div>
+                  <h5 class="text-dark text-capitalize mt-3 font-weight-bold">
+                    Havfsiz va qulay sharoit
+                  </h5>
+                  <p class="edu_desc mb-0 mt-3 text-muted">
+                    Farzandingizni bemalol bizga <br />
+                    ishonib topshirishingiz mumkin
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="about_content_box_all mt-3">
+                <div class="about_detail text-center">
+                  <div class="about_icon">
+                    <i class="fas fa-paper-plane"></i>
+                  </div>
+                  <h5 class="text-dark text-capitalize mt-3 font-weight-bold">
+                    habardor bo'ling
+                  </h5>
+                  <p class="edu_desc mb-0 mt-3 text-muted">
+                    Farzandingizning bilimi va darsga qatnashishidan har vaqt
+                    habardor bo'ling
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- !end of the about us -->
+      <section id="courses" class="transition_ bg-green">
+        <div>
+          <div class="title border_left">
+            <h1>
+              Kunduzgi kurslarga boshlang'ich oyga 50%lik chegirma! &#x1F389;
+            </h1>
+            <p>
+              quyida keltirilgan formani to'ldiring yoki andminstratorga
+              bog'laning
+            </p>
+          </div>
+          <div class="blog-slider">
+            <div class="blog-slider__wrp swiper-wrapper">
+              <div class="blog-slider__item swiper-slide">
+                <div class="blog-slider__img">
+                  <img src="{% static 'images/english.png' %}" alt="" />
+                </div>
+                <div class="blog-slider__content">
+                  <span class="blog-slider__code">Kunduzgi qabul ochiq</span>
+                  <div class="blog-slider__title">General English va IELTS</div>
+                  <div class="blog-slider__text">
+                    IELTS 7 natijali o'qituvchilar bilan o'rganing!
+                  </div>
+                  <a href="{% url 'home:courses' %}#english" class="blog-slider__button">BATAFSIL</a>
+                </div>
+              </div>
+              <div class="blog-slider__item swiper-slide">
+                <div class="blog-slider__img">
+                  <img src="{% static 'images/IT.jpg' %}" alt="" />
+                </div>
+                <div class="blog-slider__content">
+                  <span class="blog-slider__code">Veb va mobil dasturlash</span>
+                  <div class="blog-slider__title">
+                    Dasturlash va Kompyuter Savodxonligi
+                  </div>
+                  <div class="blog-slider__text">
+                    Real Loyihalar bajarish bilan birga yaxshi nazariya ham
+                    olasiz
+                  </div>
+                  <a href="{% url 'home:courses' %}#dasturlash" class="blog-slider__button"
+                    >BATAFSIL</a
+                  >
+                </div>
+              </div>
+
+              <div class="blog-slider__item swiper-slide">
+                <div class="blog-slider__img">
+                  <img src="{% static 'images/russian.jpg' %}" alt="" />
+                </div>
+                <div class="blog-slider__content">
+                  <span class="blog-slider__code"
+                    >Rus tilidan C1 sertifikat.</span
+                  >
+                  <div class="blog-slider__title">Rus tili va Grammatikasi</div>
+                  <div class="blog-slider__text">
+                    Rus tili ona tili bo'lgan o'qituvchilar bilan birga
+                  </div>
+                  <a href="{% url 'home:courses' %}#russian" class="blog-slider__button">BATAFSIL</a>
+                </div>
+              </div>
+            </div>
+            <div class="blog-slider__pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- !end of the courses -->
+      <section id="results" class="transition_">
+        <header>
+          <h2 class="border_left">Top Natijalar</h2>
+          <a href="#"
+            >BATAFSIL
+            <svg
+              height="48"
+              viewBox="0 0 48 48"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M-838-2232H562v3600H-838z" fill="none" />
+              <path d="M16 10v28l22-14z" />
+              <path d="M0 0h48v48H0z" fill="none" /></svg
+          ></a>
+        </header>
+        <div class="grid-container">
+          <div class="grid-item">
+            <div class="grid-item-content">
+              <img src="{% static 'images/student-girl.jpg' %}" alt="" />
+              <h3>Akbaraliyeva Madinaxon</h3>
+              <span>IELTS 6</span>
+              <a href="{% url 'home:team' %}#results">Batafsil
+                <svg
+                  height="48"
+                  viewBox="0 0 48 48"
+                  width="48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M-838-2232H562v3600H-838z" fill="none" />
+                  <path d="M16 10v28l22-14z" />
+                  <path d="M0 0h48v48H0z" fill="none" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="grid-item active">
+            <div class="grid-item-content">
+              <img src="{% static 'images/student-man.jpg' %}" alt="Asadbek" />
+              <h3>Eminjonov Asadbek</h3>
+              <span>IELTS 6.5</span>
+              <a href="team.html"
+                >batafsil
+                <svg
+                  height="48"
+                  viewBox="0 0 48 48"
+                  width="48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M-838-2232H562v3600H-838z" fill="none" />
+                  <path d="M16 10v28l22-14z" />
+                  <path d="M0 0h48v48H0z" fill="none" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="grid-item">
+            <div class="grid-item-content">
+              <img src="{% static 'images/student-girl.jpg' %}" alt="Mohlaroy" />
+              <h3>Baxtiyorova Mohlaroy</h3>
+              <span>IELTS 6.5</span>
+              <a href="{% url 'home:team' %}">Batafsil
+                <svg
+                  height="48"
+                  viewBox="0 0 48 48"
+                  width="48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M-838-2232H562v3600H-838z" fill="none" />
+                  <path d="M16 10v28l22-14z" />
+                  <path d="M0 0h48v48H0z" fill="none" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="grid-item">
+            <div class="grid-item-content">
+              <img src="{% static 'images/student-man.jpg' %}" alt="" />
+              <h3>Yaminjonov Axror</h3>
+              <span>IELTS 6.5</span>
+              <a href="{% url 'home:team' %}team.html"
+                >batafsil
+                <svg
+                  height="48"
+                  viewBox="0 0 48 48"
+                  width="48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M-838-2232H562v3600H-838z" fill="none" />
+                  <path d="M16 10v28l22-14z" />
+                  <path d="M0 0h48v48H0z" fill="none" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- !end of the result section -->
+      <section id="registration" class="transition_">
+        <div class="title border_left">
+          <h1>Online ro'yxatdan o'ting</h1>
+        </div>
+          <div id="enroll" class="form-container">
+              <form id="contactForm" action="{% url 'home:index' %}" method="post">
+                  <div class="form-group">
+                  {% csrf_token %}
+                   {{ form.as_p }}
+                  </div>
+                  <input type="submit" id="submit">
+
+              </form>
+            </div>
+
+
+      </section>
+      <!-- !end of the registreation -->
+      <div class="partners">
+        <div class="title border_left"><h1>Hamkorlarimiz</h1></div>
+        <div class="marquee-container">
+          <marquee
+            class="marquee-content"
+            behavior="scroll"
+            direction="left"
+            scrollamount="10"
+          >
+            <!-- Your content goes here -->
+            <img class="lsbu" src="{% static 'images/LSBU2020logo.png' %}" alt="" />
+            <img
+              class="reading"
+              src="{% static 'images/University-of-Reading-Logo-removebg-preview.png' %}"
+              alt=""
+            />
+            <img
+              class="yilogo"
+              src="{% static 'images/cityu-canada-logo-blue.png' %}"
+              alt=""
+            />
+            <img
+              class="east"
+              src="{% static 'images/university-of-east-london8981-removebg-preview.png' %}%}"
+              alt=""
+            />
+            <img
+              class="oieg"
+              src="{% static 'images/dQxFoFhnWm6TzmEg28EwAHcUM9mE5HWQ_medium-removebg-preview.png' %}"
+              alt=""
+            />
+            <img class="oieg" src="{% static 'images/OIEG-1-removebg-preview.png' %}" alt="" />
+            <!-- Repeat your content as needed -->
+          </marquee>
+        </div>
+      </div>
+      <!-- !end of the partners -->
+      <footer class="footer-section">
+        <div class="container">
+          <div class="footer-cta pt-5 pb-5">
+            <div class="row">
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div class="cta-text">
+                    <h4>Mazil</h4>
+                    <span>Qo'qon shahar, Hamza 12-uy</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="fas fa-phone"></i>
+                  <div class="cta-text">
+                    <h4>Sim qoqing</h4>
+                    <span>+998(97) 129 11 11</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="far fa-envelope-open"></i>
+                  <div class="cta-text">
+                    <h4>E-pochta manzili</h4>
+                    <span>callaneducation.uz@gmail.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-content pt-5 pb-5">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 mb-50">
+                <div class="footer-widget">
+                  <div class="footer-logo">
+                    <a href="{% url 'home:index' %}"
+                      ><img
+                        src="{% static 'images/logo-gold.png' %}"
+                        class="img-fluid"
+                        alt="logo"
+                      />
+                      <div class="title">
+                        <h1 style="color: var(--gold)">CallanEdu</h1>
+                      </div></a
+                    >
+                  </div>
+                  <div class="footer-text">
+                    <p>
+                      Kurslarimiz haqida batafsil ma'lumot va ko'rsatmalar olish
+                      uchun berilgan kontaktga telefon qilishingizni so'raymiz!
+                    </p>
+                  </div>
+                  <div class="footer-social-icon">
+                    <span>Ijtimoiy tarmoqlarimiz</span>
+                    <a href="#"><i class="fab fa-facebook-f google-bg"></i></a>
+                    <a href="#"><i class="fab fa-instagram twitter-bg"></i></a>
+                    <a href="#"><i class="fab fa-telegram google-bg"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                <div class="footer-widget">
+                  <div class="footer-widget-heading">
+                    <h3>Foydali linklar</h3>
+                  </div>
+                  <ul>
+                    <li><a href="#home">Bosh sahifa</a></li>
+                    <li><a href="#about">Haqimizda</a></li>
+                    <li><a href="{% url 'home:courses' %}#odatiy">Tariflar</a></li>
+                    <li><a href="{% url 'home:courses' %}#dasturlash">Narxlar</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="{% url 'home:courses' %}">Kurslar</a></li>
+                    <li><a href="{% url 'home:team' %}#results">Natijalar</a></li>
+                    <li><a href="#">Chegirmalar</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                <div class="footer-widget">
+                  <div class="footer-widget-heading">
+                    <h3>Xabardor bo'ling</h3>
+                  </div>
+                  <div class="footer-text mb-25">
+                    <p>Email manzilingizni yozib qoldiring!</p>
+                  </div>
+                  <div class="subscribe-form">
+                    <form action="#">
+                      <input type="text" placeholder="Email Address" />
+                      <button><i class="fab fa-telegram-plane"></i></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright-area">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                <div class="copyright-text">
+                  <p>
+                    Mualliflik huquqi asosida &copy; 2024, barcha huquqlar
+                    himoyalangan
+                    <a
+                      href="https://new.birdarcha.uz/document/b0fcf782-b48b-4add-9326-7da6b4cadde0"
+                      >Callan Education</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                <div class="footer-menu">
+                  <ul>
+                    <li><a href="#">Bosh sahifa</a></li>
+                    <li><a href="#">Kelishuvlar</a></li>
+                    <li><a href="#">Xavfsizlik</a></li>
+                    <li><a href="#">Qoidalar</a></li>
+                    <li><a href="#">Bog'lanish</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.js"></script>
   </body>
 </html>
