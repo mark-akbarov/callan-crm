@@ -99,8 +99,9 @@ def webhook(request):
         update = types.Update.de_json(data)
         bot.process_new_updates([update])
         return HttpResponse()
-    except json.JSONDecodeError:
-        print(f"")
+    except Exception as e:
+        print(f"Error processing webhook: {e}")
+        return HttpResponse()
 
 
 @bot.message_handler(commands=['help'])
