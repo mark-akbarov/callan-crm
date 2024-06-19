@@ -365,10 +365,16 @@ def handle_group_info_state(message):
     bot.delete_state(message.from_user.id, message.chat.id)
     try:
         course = get_object_or_404(Course, name=message.text)
-        bot.reply_to(
-            message,
-            course.info,
-        )
+        if course.info is not None:
+            bot.reply_to(
+                message,
+                course.info,
+            )
+        else:
+            bot.reply_to(
+                message,
+                "Kurs haqida ma'lumotlar mavjud emas..."
+            )
     except Exception as e:
         print(f"Error at: {e}")
 
