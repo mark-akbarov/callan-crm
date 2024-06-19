@@ -355,26 +355,22 @@ def handle_courses(message):
             message.from_user.id,
             state=GetGroupInfoState.GROUP_NAME.value
         )
-        bot.delete_state(message.from_user.id, message.chat.id)
     except Exception as e:
         print(f"Error at: {e}")
 
 
 @bot.message_handler(state=GetGroupInfoState.GROUP_NAME.value)
 def handle_group_info_state(message):
-    bot.delete_state(message.from_user.id, message.chat.id)
     try:
         course = get_object_or_404(Course, name=message.text)
-        if course.info is not None:
-            bot.reply_to(
-                message,
-                course.info,
-            )
-        else:
-            bot.reply_to(
-                message,
-                "Kurs haqida ma'lumotlar mavjud emas..."
-            )
+        bot.reply_to(
+            message,
+            course.info,
+        )
+        bot.reply_to(
+            message,
+            "Kurs haqida ma'lumotlar mavjud emas..."
+        )
     except Exception as e:
         print(f"Error at: {e}")
 
@@ -450,7 +446,6 @@ def handle_knowledge_level(message):
     print(user_info)
     if user:
         try:
-            print("hello")
             course = Course.objects.get(name=user_info['COURSE'])
             print(course)
             Enrollment.objects.create(
