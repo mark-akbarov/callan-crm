@@ -30,7 +30,7 @@ local_settings.py
 
 # IDE files
 .vscode/
-
+.idea/
 # Compiled Python files
 *.pyc
 
