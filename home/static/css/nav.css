@@ -1,0 +1,223 @@
+/* outfit font family */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+:root {
+  --mainfont: "Outfit", sans-serif;
+  --secondary: "Space Grotesk", sans-serif;
+  --navy: #1e2235;
+  --gold: #ffbf00;
+  --gap_: 2rem;
+  --radius_: 1rem;
+}
+/* Custom CSS to remove underline from Bootstrap links */
+/* Custom CSS to remove underline from links in the navbar */
+.navigation .nav-list a {
+  text-decoration: none; /* Remove underline */
+}
+
+/* Optional: Additional styling for links on hover or focus */
+.navigation .nav-list a:hover,
+.navigation .nav-list a:focus {
+  text-decoration: none; /* Remove underline on hover or focus */
+  color: var(--gold);
+}
+
+.navigation {
+  width: 100%;
+  margin: 0 auto;
+  height: 70px;
+  background-color: var(--navy);
+  backdrop-filter: blur(5px);
+  font-family: var(--mainfont);
+  position: fixed;
+  z-index: 99999999;
+  /* border: #0c0c0c 2px solid; */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.brand {
+  position: absolute;
+  padding-left: 20px;
+  float: left;
+  line-height: 70px;
+  text-transform: capitalize;
+  font-size: 1.4em;
+}
+
+.brand a,
+.brand a:visited {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+nav {
+  float: right;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  float: left;
+  position: relative;
+}
+nav ul li a {
+  display: block;
+  padding: 10px 20px 0 20px;
+  line-height: 50px;
+  background-color: inherit;
+  backdrop-filter: blur(inherit);
+  color: var(--gold);
+  text-decoration: none;
+}
+nav ul li a::before {
+  transition: 0.2s;
+  height: 4px;
+  content: "";
+  position: absolute;
+  background-color: var(--gold);
+  width: 0%;
+  bottom: 4px;
+}
+nav ul li a:hover::before {
+  width: 70%;
+}
+nav ul li a:not(:only-child):after {
+  padding-left: 4px;
+  content: "▾";
+}
+nav ul li ul li {
+  min-width: 190px;
+}
+nav ul li ul li a {
+  padding: 15px;
+  line-height: 20px;
+}
+
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  background-color: var(--navy);
+}
+
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fff;
+  height: 70px;
+  width: 70px;
+  z-index: 11111;
+}
+
+@media only screen and (max-width: 1048px) {
+  .nav-mobile {
+    display: block;
+    margin: 0;
+  }
+
+  nav {
+    width: 100%;
+    padding: 70px 0 15px;
+  }
+  nav ul {
+    display: none;
+  }
+  nav ul li {
+    float: none;
+  }
+  nav ul li a {
+    padding: 15px;
+    line-height: 20px;
+  }
+  nav ul li a:hover::before {
+    width: 20%;
+  }
+  nav ul li ul li a {
+    padding-left: 30px;
+  }
+
+  .nav-dropdown {
+    position: static;
+  }
+}
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+  background-color: #fff;
+}
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: var(--navy);
+  position: absolute;
+  display: block;
+  content: "";
+  transition: all 0s ease-in-out;
+}
+#nav-toggle span:before {
+  top: -10px;
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+#nav-toggle.active span {
+  background-color: transparent;
+}
+#nav-toggle.active span:before,
+#nav-toggle.active span:after {
+  top: 0;
+}
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}
+
+@media screen and (min-width: 1048px) {
+  .nav-list {
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 1048px) {
+  .nav-list a {
+    background-color: var(--navy);
+  }
+  .nav-list {
+    box-shadow: 0px 100px 70px 2000px #0c0c0c84;
+  }
+}
+@media screen and (max-width: 490px) {
+  .brand {
+    font-size: medium;
+  }
+  .nav-mobile {
+    margin: 0;
+    padding: 0.5rem;
+  }
+}
