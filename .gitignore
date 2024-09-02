@@ -11,13 +11,13 @@ build/
 
 # Environments
 .env
-.env.*
 .venv
 env/
 venv/
 ENV/
 
 # Static files
+static/
 /staticfiles/
 media/
 
