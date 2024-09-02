@@ -24,11 +24,11 @@ class Course(BaseModel):
     name = models.CharField(max_length=255)
     teacher = models.ForeignKey(
         'account.User', 
-        on_delete=models.CASCADE, 
+        on_delete=models.SET_NULL, 
         related_name='courses', 
         null=True
         )
-    info = models.TextField()
+    info = models.TextField(blank=True, null=True)
     category = models.ForeignKey('course.Category', on_delete=models.CASCADE, related_name='courses')
     
     def __str__(self) -> str:
