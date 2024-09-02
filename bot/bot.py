@@ -96,6 +96,7 @@ def handle_cancel(message):
 def webhook(request):
     try:
         data = json.loads(request.body)
+        print(data)
         update = types.Update.de_json(data)
         bot.process_new_updates([update])
         return HttpResponse()
@@ -343,6 +344,14 @@ def handle_submit_group_results_image_errors(message):
 @bot.message_handler(commands=['courses'])
 def handle_courses(message):
     courses = Course.objects.all()
+    
+    if not courses:
+        bot.reply_to(
+            message,
+            "Kurslar mavjud emas!"
+        )
+        return bot.set_state(message.from_user.id, state=None)
+    
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     course_markup = CustomKeyboard([course.name for course in courses])
     try:
@@ -378,6 +387,14 @@ def handle_group_info_state(message):
 @bot.message_handler(commands=['register'])
 def handle_register_category(message):
     categories = Category.objects.all()
+    
+    if not categories:
+        bot.reply_to(
+            message,
+            "Kategoriyalar mavjud emas!"
+        )
+        return bot.set_state(message.from_user.id, state=None)
+    
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     categories_buttons = CustomKeyboard([course.name for course in categories])
     try:
@@ -398,6 +415,14 @@ def handle_register_category(message):
 def handle_register_course(message):
     category_name = message.text
     courses = Course.objects.filter(category__name=category_name)
+    
+    if not courses:
+        bot.reply_to(
+            message,
+            "Kurslar mavjud emas!"
+        )
+        return bot.set_state(message.from_user.id, state=None)
+    
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     courses_buttons = CustomKeyboard([course.name for course in courses])
     try:
@@ -443,35 +468,36 @@ def handle_knowledge_level(message):
         telegram_username=message.from_user.username, 
         telegram_user_id=message.from_user.id
         ).first()
-    print(user_info)
-    if user:
-        try:
-            course = Course.objects.get(name=user_info['COURSE'])
-            print(course)
-            Enrollment.objects.create(
-                user=user,
-                course=course,
-                knowledge_level=user_info['KNOWLEDGE_LEVEL']
-            )
-            
-            create_lead(
-                name=f"{user.first_name} {user.last_name}",
-                phone=user.phone_number,
-                note=f"{user_info['COURSE']} - {user_info['KNOWLEDGE_LEVEL']}"
-            )
-            bot.reply_to(
-            message,
-            "Siz ro'yxatdan muvaffaqiyatli o'tdingiz!\
-                \nSiz bilan 1-2 kun ichida administratorlarimiz aloqaga chiqishadi."
-        )
-        except Exception as e:
-            print(f"Error at: {e}")
-    else:
+
+    if not user:
         bot.reply_to(message, "Ismingizni kiriting:",)
         bot.set_state(
             message.from_user.id,
             state=RegistrationState.FIRST_NAME.value
             )
+        
+    try:
+        course = Course.objects.get(name=user_info['COURSE'])
+        print(course)
+        Enrollment.objects.create(
+            user=user,
+            course=course,
+            knowledge_level=user_info['KNOWLEDGE_LEVEL']
+        )
+        
+        create_lead(
+            name=f"{user.first_name} {user.last_name}",
+            phone=user.phone_number,
+            note=f"{user_info['COURSE']} - {user_info['KNOWLEDGE_LEVEL']}"
+        )
+        bot.reply_to(
+        message,
+        "Siz ro'yxatdan muvaffaqiyatli o'tdingiz!\
+            \nSiz bilan 1-2 kun ichida administratorlarimiz aloqaga chiqishadi."
+    )
+    except Exception as e:
+        print(f"Error at: {e}")
+
 
 
 @bot.message_handler(state=RegistrationState.FIRST_NAME.value)
@@ -500,6 +526,7 @@ def handle_phone_number(message):
 @bot.message_handler(state=RegistrationState.PHONE_NUMBER.value)
 def handle_phone_number(message):
     user_info['PHONE_NUMBER'] = message.text
+    
     try:
         course = get_object_or_404(Course, name=user_info['COURSE'])
         user, _ = User.objects.get_or_create(
@@ -528,5 +555,6 @@ def handle_phone_number(message):
             \nSiz bilan 1-2 kun ichida administratorlarimiz aloqaga chiqishadi."
         )
         bot.delete_state(message.from_user.id, message.chat.id)
+        
     except Exception as e:
         print(f"Error when creating object: {e}")

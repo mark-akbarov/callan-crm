@@ -201,7 +201,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN', '6847394754:AAFo-f8AfmxZFzz-EZoF_UL44Os9uTdIEag')
 
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
