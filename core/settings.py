@@ -34,9 +34,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '*',
-    'www.callaneducation.uz', 
-    'callaneducation.uz', 
-    'localhost', 
+    'www.callaneducation.uz',
+    'callaneducation.uz',
+    'localhost',
     '127.0.0.1',
     'web'
     ]
@@ -58,13 +58,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # 3rd party
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'easy_thumbnails',
-    
+
     # local
     'account',
     'course',
@@ -170,7 +170,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
-
+STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
