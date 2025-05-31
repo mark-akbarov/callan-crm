@@ -39,14 +39,14 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'web'
-    ]
+]
 # str(os.getenv("ALLOWED_HOSTS")).split(" ")
 
 CSRF_TRUSTED_ORIGINS = [
     "https://www.callaneducation.uz",
     "https://callaneducation.uz",
     "http://localhost:8000"
-    ]
+]
 
 
 # Application definition
@@ -111,7 +111,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
     }
 }
@@ -151,7 +151,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
         'rest_framework.filters.SearchFilter',
     ],
- 
+
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -201,13 +201,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN', '6847394754:AAFo-f8AfmxZFzz-EZoF_UL44Os9uTdIEag')
+TELEGRAM_TOKEN = os.getenv(
+    'TELEGRAM_TOKEN', '6847394754:AAFo-f8AfmxZFzz-EZoF_UL44Os9uTdIEag')
 
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 
-ALFA_CRM_EMAIL=os.getenv("ALFA_CRM_EMAIL")
-ALFA_CRM_TOKEN=os.getenv("ALFA_CRM_TOKEN")
-ALFA_CRM_URL=os.getenv("ALFA_CRM_URL")
+ALFA_CRM_EMAIL = os.getenv("ALFA_CRM_EMAIL")
+ALFA_CRM_TOKEN = os.getenv("ALFA_CRM_TOKEN")
+ALFA_CRM_URL = os.getenv("ALFA_CRM_URL")

@@ -13,6 +13,9 @@ violet = "#3C578C"
 
 
 def get_token(email, api_token):
+    if not ALFA_CRM_URL:
+        raise ValueError("ALFA_CRM_URL is not set")
+
     url = ALFA_CRM_URL + "auth/login"
     response = requests.post(url, json={"email": email, "api_key": api_token})
     if response.status_code == 200:
@@ -22,22 +25,25 @@ def get_token(email, api_token):
 
 
 def create_lead(name, phone, note, branch_ids=1, legal_type=1, color=blue, is_study=0):
+    if not ALFA_CRM_URL:
+        raise ValueError("ALFA_CRM_URL is not set")
+
     token = get_token(email=ALFA_CRM_EMAIL, api_token=ALFA_CRM_TOKEN)
     token = token['token']
     url = ALFA_CRM_URL + "1/customer/create"
     res = requests.post(
-        url, 
+        url,
         json={
-            "name": name, 
-            "legal_type": legal_type, 
-            "is_study": is_study, 
+            "name": name,
+            "legal_type": legal_type,
+            "is_study": is_study,
             "branch_ids": branch_ids,
             "color": color,
             "phone": phone,
             "note": note
-            }, 
+        },
         headers={"X-ALFACRM-TOKEN": token}
-        )
+    )
     if res.status_code == 200:
         print(res.json())
         print("success")
